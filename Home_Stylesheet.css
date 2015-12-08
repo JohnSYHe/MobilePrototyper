@@ -1,7 +1,46 @@
-.log-in-form {
-    border: 1px solid #cacaca;
-    padding: 1rem;
-    border-radius: 3px;
+.container {
+    display: block;
+    border: 3px black solid;
+    width: 350px;
+    margin: auto;
+    font-size: 20px;
+}
+
+.loginForm {
+    text-align: center;
+}
 
 
+.userInput {
+    text-align: center;
+    height: 30px;
+    width: 250px;
+}
+
+.passInput {
+    text-align: center;
+    height: 30px;
+    width: 250px;
+}
+
+.logBtn {
+    border: 1px black solid;
+    background-color: lightblue;
+    height: 40px;
+    width: 255px;
+}
+
+.registerHere {
+    font-size: 14px;
+}
+
+.forgotPassword {
+    font-size: 14px;
+}
+
+img {
+    display: block;
+    max-height: 250px;
+    max-width: 300px;
+    margin: auto;
 }
