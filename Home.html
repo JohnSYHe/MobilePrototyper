@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Title</title>
+		<link href="Home_Stylesheet.css" rel="stylesheet" type="text/css">
     </head>
     <body>
 
@@ -12,21 +13,44 @@
 
     <p>
         <center><img src="Exium Logo.png" alt="logo"></center>
-	</p>	
-		<form>
-			<center>
-				<table border="1">
-					<tr>
-						<td>User Name/Email</td>
-						<td><input type="text" placeholder="Email/Username" name="username"></td>
-					</tr>
-                    <tr>
-						<td>Passworrrrrrrrrrrrrrrrrrrrrrrrrrrrrrd</td>
-						<td><input type="text" placeholder="Password" name="password"></td>
-					</tr>
-				</table>
-				<input type="button" value="Login" style="width: 175px" onClick="parent.location='projectselect.html'">
-			</center>
-		</form>
-    </body>
+	</p>
+
+	<div class="row">
+
+		<div class="medium-6 medium-centered large-4 large-centered columns">
+
+			<form>
+
+				<div class="row column log-in-form">
+
+					<h4 class="text-center">Log in with your username or email</h4>
+
+					<label>Email
+
+						<input type="text" placeholder="somebody@example.com">
+
+					</label>
+
+					<label>Password
+
+						<input type="text" placeholder="Password">
+
+					</label>
+
+					<input id="show-password" type="checkbox"><label for="show-password">Show password</label>
+
+					<p><input type="button" class="button expanded" value="Login"></p>
+
+					<p class="text-center"><a href="#">Forgot your password?</a></p>
+
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+
+	</body>
 </html>
