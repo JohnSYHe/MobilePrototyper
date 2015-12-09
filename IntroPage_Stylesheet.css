@@ -1,10 +1,15 @@
 .container {
     display: block;
-    border: 3px black solid;
+    border: 2px black solid;
     width: 350px;
-    height: 580px;
+    height: 445px;
     margin: auto;
     font-size: 20px;
+
+    /* Center the container to the middle of the page*/
+    position: absolute;
+    top: 25%;
+    left: 41%;
 }
 
 .loginForm {
