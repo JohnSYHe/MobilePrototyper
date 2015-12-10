@@ -1,15 +1,15 @@
 .container {
     /* Settings for the box container which holds the form*/
     display: block;
-    border: 2px black solid;
     width: 350px;
     height: 450px;
     margin: auto;
-
-    /* Center the container to the middle of the page*/
     position: absolute;
-    top: 25%;
-    left: 41%;
+    top: 50%;
+    left: 50%;
+    margin-top: -225px;
+    margin-left: -175px;
+
 }
 
 img {
