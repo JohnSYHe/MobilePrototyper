@@ -1,3 +1,4 @@
+/* Container for the forms.*/
 .container {
     /* Settings for the box container which holds the form*/
     display: block;
@@ -12,6 +13,7 @@
 
 }
 
+/* Exium logo adjustments can be made here.*/
 img {
     display: block;
     max-height: 250px;
