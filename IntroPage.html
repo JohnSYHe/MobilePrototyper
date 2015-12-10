@@ -1,50 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-		<link href="IntroPage_Stylesheet.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">-->
+    <link href="IntroPage_Stylesheet.css" rel="stylesheet" type="text/css">
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>-->
+    <title>Title</title>
+</head>
+<body>
 
-        <title>Title</title>
-    </head>
-    <body>
-    
-    <div class="container">
-        <a href="https://www.exium.co.nz/"><img src="Exium Logo.png" alt="logo"></a>
+<div class="container">
+    <!--This implements the logo onto the website and makes it that the logo is a link-->
+    <a href="https://www.exium.co.nz/"><img src="Exium Logo.png" alt="logo"></a>
 
-        <form class="loginForm">
-            <div>
-                <table align="center">
-                    <tr>
-                        <td><input type="text" class="userInput" placeholder="Username/Email"></td>
-                    </tr>
-                    <tr>
-                        <td><input type="password" class="passInput" placeholder="Password"></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="button" class="logBtn" value="Login" onClick="location.href='Profile.html'">
-                        </td>
-                    </tr>
+    <form role="form">
+        <div class="form-group">
+            <input type="email" class="form-control" placeholder="Username/Email">
+        </div>
 
-                    <tr>
-                        <td>
-                            <a href="" class="registerHere">Register Here</a>
-                        </td>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password">
+        </div>
 
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="#" class="forgotPassword">Forgot password? Click here!</a>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </form>
-    </div>
+        <div class="form-group">
+            <input type="button" class="btn btn-default btn-block" value="Login" onClick="location.href='Profile.html'">
+        </div>
 
-	</body>
+        <div class="btn-group btn-group-justified">
+            <a href="" class="btn btn-primary">Register Here</a>
+            <a href="#" class="btn btn-primary">Forgot password?</a>
+        </div>
+
+    </form>
+
+</div>
+
+</body>
 </html>

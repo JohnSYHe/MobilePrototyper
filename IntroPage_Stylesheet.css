@@ -2,7 +2,7 @@
     display: block;
     border: 2px black solid;
     width: 350px;
-    height: 445px;
+    height: 450px;
     margin: auto;
     font-size: 20px;
 
@@ -10,40 +10,6 @@
     position: absolute;
     top: 25%;
     left: 41%;
-}
-
-.loginForm {
-    text-align: center;
-}
-
-.userInput {
-    text-align: center;
-    height: 30px;
-    width: 250px;
-}
-
-.passInput {
-    text-align: center;
-    height: 30px;
-    width: 250px;
-}
-
-.logBtn {
-    border: 1px black solid;
-    background-color: lightskyblue;
-    height: 40px;
-    width: 255px;
-}
-
-.registerHere {
-    font-size: 16px;
-    font-family: Arial;
-}
-
-.forgotPassword {
-    font-size: 14px;
-    font-family: Arial;
-
 }
 
 img {
