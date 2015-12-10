@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body{
     background-image:url("pic/bg.jpg");
     
@@ -9,18 +10,32 @@ body{
     display: block;
     width: 400px;
     height: 480px;
+=======
+/* Container for the forms.*/
+.container {
+    /* Settings for the box container which holds the form*/
+    display: block;
+    width: 350px;
+    height: 450px;
+>>>>>>> origin/master
     margin: auto;
     position: absolute;
     top: 50%;
     left: 50%;
+<<<<<<< HEAD
     margin-top: -240px;
     margin-left: -200px;
     background-color: #FFFFFF;
     box-shadow: 1px 1px 4px #CCCCCC inset;
+=======
+    margin-top: -225px;
+    margin-left: -175px;
+>>>>>>> origin/master
 
     /* Center the container to the middle of the page*/
 }
 
+/* Exium logo adjustments can be made here.*/
 img {
     display: block;
     max-height: 250px;

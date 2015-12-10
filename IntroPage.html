@@ -6,13 +6,19 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
     <link href="IntroPage_Stylesheet.css" rel="stylesheet" type="text/css">
+<<<<<<< HEAD
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+=======
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+>>>>>>> origin/master
     <title>Title</title>
 </head>
 <body>
 
 <!--This creates the container that holds all the elements. Adjustable in .CSS-->
 <div class="container">
+<<<<<<< HEAD
     <!--This implements the logo onto the website and makes it that the logo is a link-->
     <a href="https://www.exium.co.nz/"><img src="Exium Logo.png" alt="logo"></a>
 
@@ -34,6 +40,83 @@
     <div class="btn-group btn-group-justified">
         <a href="" class="btn btn-info">Register Here</a>
         <a href="#" class="btn btn-info">Forgot password?</a>
+=======
+
+    <!--Makes the list for the tabs. This is the place to add more.-->
+    <ul class="nav nav-tabs nav-justified">
+        <li class="active"><a data-toggle="tab" href="#login">Log-In</a></li>
+        <li><a data-toggle="tab" href="#register">Register</a></li>
+    </ul>
+
+    <!--This controls the content for the tabs.-->
+    <div class="tab-content">
+        <!--The initial active pane, the log-in pane.-->
+        <div id="login" class="tab-pane fade in active">
+            <!--This implements the logo onto the website and makes it that the logo is a link-->
+            <a href="https://www.exium.co.nz/"><img src="Exium Logo.png" alt="logo"></a>
+            <!--The form for the login that requires user input to complete.-->
+            <form role="form">
+                <!--Makes the box for username/email and spaces it neatly-->
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Username/Email">
+                </div>
+                <!--Makes the box for the password and spaces it neatly-->
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password">
+                </div>
+                <!--Makes the button to log in once the user inputs their details-->
+                <div class="form-group">
+                    <input type="button" class="btn btn-default btn-block" value="Login" onClick="location.href='Profile.html'">
+                </div>
+            </form>
+            <!--Makes a button group for the 2 links if they user needs it-->
+            <div class="btn-group btn-group-justified">
+                <a href="" class="btn btn-info">Register Here</a>
+                <a href="#" class="btn btn-info">Forgot password?</a>
+            </div>
+        </div>
+        <!--Second pane for the register tab.-->
+        <div id="register" class="tab-pane fade">
+            <!--The form for the register pane that requires the user input to complete.-->
+            <form role="form">
+                <h4>Please fill in your details</h4>
+                <!--Section for the username.-->
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="username" class="form-control" placeholder="Username">
+                </div>
+                <!--Section for the email.-->
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" class="form-control" placeholder="ABC123@email.com">
+                </div>
+                <!--Section for the contact number-->
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="contact" class="form-control">
+                </div>
+                <!--Section for the alternative contact number (optional).-->
+                <div class="form-group">
+                    <label>Alt. Contact (Optional)</label>
+                    <input type="altContact" class="form-control">
+                </div>
+                <!--Section for the password.-->
+                <label>Password</label>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password">
+                </div>
+                <!--Section for the password confirmation.-->
+                <label>Confirm Password</label>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password">
+                </div>
+                <!--Makes the button to log in once the user inputs their details-->
+                <div class="form-group">
+                    <input type="button" class="btn btn-default btn-block" value="Register" onClick="location.href='#'">
+                </div>
+            </form>
+        </div>
+>>>>>>> origin/master
     </div>
 </div>
 
