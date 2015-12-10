@@ -1,45 +1,10 @@
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
 
-li {
-    float: left;
-    font-size: 18px;
-}
-
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-/* Change the link color to #111 (black) on hover */
-li a:hover {
-    background-color: #111;
-}
-
-
-h1 {
-    text-align: center;
-}
-
-section p {
-    text-align: center;
-}
 
 .header {
     text-align: center;
-    background: url("http://cdn9.howtogeek.com/wp-content/uploads/2013/11/glowing-keyboard.jpg") no-repeat center center;
+    background-color: darkslateblue;
     background-size: cover;
     padding: 4rem; }
-.header .main-header {
-    color: #666; }
 
 .header-subnav {
     float: none;
@@ -57,11 +22,10 @@ section p {
 .header-subnav li a {
     padding: 0.9rem 1rem 0.75rem;
     font-size: 0.875rem;
-    color: #fff;
     text-transform: uppercase;
-    display: block;
     font-weight: bold;
     letter-spacing: 1px;
+
 }
 
 .header-subnav li a.is-active {
@@ -81,3 +45,8 @@ section p {
     padding: 10px;
 }
 
+.nav-header {
+    color: whitesmoke;
+    font-family: Tahoma;
+    text-align: left;
+}

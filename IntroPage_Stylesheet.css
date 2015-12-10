@@ -1,49 +1,24 @@
+body{
+    background-image:url("pic/bg.jpg");
+    
+
+}
 .container {
+    /* Settings for the box container which holds the form*/
+    border-radius: 10px;
     display: block;
-    border: 2px black solid;
-    width: 350px;
-    height: 445px;
+    width: 400px;
+    height: 480px;
     margin: auto;
-    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -240px;
+    margin-left: -200px;
+    background-color: #FFFFFF;
+    box-shadow: 1px 1px 4px #CCCCCC inset;
 
     /* Center the container to the middle of the page*/
-    position: absolute;
-    top: 25%;
-    left: 41%;
-}
-
-.loginForm {
-    text-align: center;
-}
-
-.userInput {
-    text-align: center;
-    height: 30px;
-    width: 250px;
-}
-
-.passInput {
-    text-align: center;
-    height: 30px;
-    width: 250px;
-}
-
-.logBtn {
-    border: 1px black solid;
-    background-color: lightskyblue;
-    height: 40px;
-    width: 255px;
-}
-
-.registerHere {
-    font-size: 16px;
-    font-family: Arial;
-}
-
-.forgotPassword {
-    font-size: 14px;
-    font-family: Arial;
-
 }
 
 img {
