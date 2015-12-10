@@ -11,30 +11,30 @@
 </head>
 <body>
 
+<!--This creates the container that holds all the elements. Adjustable in .CSS-->
 <div class="container">
     <!--This implements the logo onto the website and makes it that the logo is a link-->
     <a href="https://www.exium.co.nz/"><img src="Exium Logo.png" alt="logo"></a>
 
     <form role="form">
+        <!--Makes the box for username/email and spaces it neatly-->
         <div class="form-group">
             <input type="email" class="form-control" placeholder="Username/Email">
         </div>
-
+        <!--Makes the box for the password and spaces it neatly-->
         <div class="form-group">
             <input type="password" class="form-control" placeholder="Password">
         </div>
-
+        <!--Makes the button to log in once the user inputs their details-->
         <div class="form-group">
             <input type="button" class="btn btn-default btn-block" value="Login" onClick="location.href='Profile.html'">
         </div>
-
-        <div class="btn-group btn-group-justified">
-            <a href="" class="btn btn-primary">Register Here</a>
-            <a href="#" class="btn btn-primary">Forgot password?</a>
-        </div>
-
     </form>
-
+    <!--Makes a button group for the 2 links if they user needs it-->
+    <div class="btn-group btn-group-justified">
+        <a href="" class="btn btn-info">Register Here</a>
+        <a href="#" class="btn btn-info">Forgot password?</a>
+    </div>
 </div>
 
 </body>
