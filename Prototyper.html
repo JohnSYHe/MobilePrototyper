@@ -1,17 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="Prototyper_Stylesheet.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <link href="IntroPage_Stylesheet.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <title>Exium Prototyper</title>
+</head>
 
-        <title>Tool page</title>
-    </head>
-
-    <body>
-
-    </body>
+<body>
+<!--Menu bar with the drop-down stuff for File, Settings and Help.-->
+<nav class="navbar navbar-default">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            <!--Dropdown stuff for the File tab-->
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">File</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Save</a></li>
+                    <li><a href="#">Open</a></li>
+                    <li><a href="#">Import</a></li>
+                    <li><a href="Profile.html">Exit</a></li>
+                </ul>
+            </li>
+            <!--Dropdown stuff for the Settings tab-->
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Settings</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Size</a></li>
+                    <li><a href="#">Tool</a></li>
+                    <li><a href="#">Something</a></li>
+                </ul>
+            </li>
+            <!--Dropdown stuff for the Help tab-->
+            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Help</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Tutorial/Guide</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!--Application related stuff here. Widget boxes, settings boxes and the canvas.-->
+<div class="container-fluid col-lg-12 bg-success">
+    <div class="row">
+        <div class="col-lg-12 bg-primary">
+            <!--Container for the widget settings.-->
+            <div class="container-fluid col-lg-1 col-sm-1 bg-warning" id="widgetSettings">
+                <!--Sets it so that the button it toggable in which it shows/hides the content.-->
+                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#settingsGroup">Settings</button>
+                <!--Start off by showing the content "collapse in", "collapse" if start hidden.-->
+                <div id="settingsGroup" class="collapse in">
+                    <button type="button" class="btn btn-default btn-md">1</button>
+                    <button type="button" class="btn btn-default btn-md">2</button>
+                    <button type="button" class="btn btn-default btn-md">3</button>
+                    <button type="button" class="btn btn-default btn-md">4</button>
+                    <button type="button" class="btn btn-default btn-md">5</button>
+                    <button type="button" class="btn btn-default btn-md">6</button>
+                    <button type="button" class="btn btn-default btn-md">7</button>
+                    <button type="button" class="btn btn-default btn-md">8</button>
+                </div>
+            </div>
+            <!--Container for the widgets.-->
+            <div class="container-fluid col-lg-1 col-sm-1 bg-info" id="widgets">
+                <!--Sets it so that the button it toggable in which it shows/hides the content.-->
+                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#widgetGroup">Widgets</button>
+                <!--Start off by showing the content "collapse in", "collapse" if start hidden.-->
+                <div id="widgetGroup" class="collapse in">
+                    <button type="button" class="btn btn-default btn-md">1</button>
+                    <button type="button" class="btn btn-default btn-md">2</button>
+                    <button type="button" class="btn btn-default btn-md">3</button>
+                    <button type="button" class="btn btn-default btn-md">4</button>
+                    <button type="button" class="btn btn-default btn-md">5</button>
+                    <button type="button" class="btn btn-default btn-md">6</button>
+                    <button type="button" class="btn btn-default btn-md">7</button>
+                    <button type="button" class="btn btn-default btn-md">8</button>
+                </div>
+            </div>
+            <div class="col-lg-10 col-sm-5 bg-warning">
+                <!--Canvas for drawing on.-->
+                <div class="container-fluid">
+                    <canvas id="myCanvas" height="720px" width="1000px" style="border:1px solid black;">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
 </html>
