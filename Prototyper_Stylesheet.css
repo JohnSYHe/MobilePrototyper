@@ -1,3 +1,41 @@
-.container {
+.myCanvas{
+    width: calc(100vw - 400px);
+    height:calc(100vh - 82px);
 
 }
+/* Box styles */
+.scrollbars {
+    border: none;
+    padding: 5px;
+    font: 24px/36px sans-serif;
+    width: 300px;
+    height: 300px;
+    overflow: scroll;
+}
+/* for whole tools */
+.scrollbarsTools{
+    border: none;
+    padding: 5px;
+    font: 24px/36px sans-serif;
+    width: 320px;
+    height:calc(100vh - 82px);
+    overflow: scroll;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    border: 1px solid deepskyblue;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: deepskyblue;
+    border-radius: 10px;
+}
+
+

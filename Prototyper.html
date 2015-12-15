@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-    <link href="IntroPage_Stylesheet.css" rel="stylesheet" type="text/css">
+    <link href="Prototyper_Stylesheet.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <title>Exium Prototyper</title>
@@ -14,6 +14,17 @@
 <body>
 <!--Menu bar with the drop-down stuff for File, Settings and Help.-->
 <nav class="navbar navbar-default">
+
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Brand</a>
+    </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
@@ -46,16 +57,22 @@
         </ul>
     </div>
 </nav>
+
 <!--Application related stuff here. Widget boxes, settings boxes and the canvas.-->
-<div class="container-fluid col-lg-12 bg-success">
+<div class="container-fluid col-md-12">
     <div class="row">
-        <div class="col-lg-12 bg-primary">
+        <div class="col-md-12">
+
             <!--Container for the widget settings.-->
-            <div class="container-fluid col-lg-1 col-sm-1 bg-warning" id="widgetSettings">
+            <div class="container-fluid col-md-3" id="tools">
+                <div class = "scrollbarsTools">
                 <!--Sets it so that the button it toggable in which it shows/hides the content.-->
-                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#settingsGroup">Settings</button>
+
+                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#WidgetsGroup">Widgets</button>
+                <p></p>
                 <!--Start off by showing the content "collapse in", "collapse" if start hidden.-->
-                <div id="settingsGroup" class="collapse in">
+                <div id="WidgetsGroup" class="collapse in">
+                    <div class = "scrollbars">
                     <button type="button" class="btn btn-default btn-md">1</button>
                     <button type="button" class="btn btn-default btn-md">2</button>
                     <button type="button" class="btn btn-default btn-md">3</button>
@@ -64,28 +81,78 @@
                     <button type="button" class="btn btn-default btn-md">6</button>
                     <button type="button" class="btn btn-default btn-md">7</button>
                     <button type="button" class="btn btn-default btn-md">8</button>
+                    <button type="button" class="btn btn-default btn-md">9</button>
                 </div>
+                </div>
+                <p><br></p>
+                <!--Sets it so that the button it toggable in which it shows/hides the content.-->
+
+                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#widgetsetting">Widgets Setting</button>
+                <p></p>
+                <!--Start off by showing the content "collapse in", "collapse" if start hidden.-->
+
+                <div id="widgetsetting" class="collapse in">
+                    <div class = "scrollbars">
+                    <button type="button" class="btn btn-default btn-md">1</button>
+                    <button type="button" class="btn btn-default btn-md">2</button>
+                    <button type="button" class="btn btn-default btn-md">3</button>
+                    <button type="button" class="btn btn-default btn-md">4</button>
+                    <button type="button" class="btn btn-default btn-md">5</button>
+                    <button type="button" class="btn btn-default btn-md">6</button>
+                    <button type="button" class="btn btn-default btn-md">7</button>
+                    <button type="button" class="btn btn-default btn-md">8</button>
+                    <button type="button" class="btn btn-default btn-md">9</button>
+                </div>
+                </div>
+                <p><br></p>
+                <!--Sets it so that the button it toggable in which it shows/hides the content.-->
+
+                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#AestheticSetting">Aesthetic Setting</button>
+                <p></p>
+                <!--Start off by showing the content "collapse in", "collapse" if start hidden.-->
+                <div id="AestheticSetting" class="collapse in">
+                    <div class = "scrollbars">
+                    <button type="button" class="btn btn-default btn-md">1</button>
+                    <button type="button" class="btn btn-default btn-md">2</button>
+                    <button type="button" class="btn btn-default btn-md">3</button>
+                    <button type="button" class="btn btn-default btn-md">4</button>
+                    <button type="button" class="btn btn-default btn-md">5</button>
+                    <button type="button" class="btn btn-default btn-md">6</button>
+                    <button type="button" class="btn btn-default btn-md">7</button>
+                    <button type="button" class="btn btn-default btn-md">8</button>
+                    <button type="button" class="btn btn-default btn-md">9</button>
+                </div>
+                    </div>
+                <p><br></p>
+                <!--Sets it so that the button it toggable in which it shows/hides the content.-->
+
+                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#ScreenSetting">Screen Setting</button>
+                <p></p>
+                <!--Start off by showing the content "collapse in", "collapse" if start hidden.-->
+                <div id="ScreenSetting" class="collapse in">
+                    <div class = "scrollbars">
+                    <button type="button" class="btn btn-default btn-md">1</button>
+                    <button type="button" class="btn btn-default btn-md">2</button>
+                    <button type="button" class="btn btn-default btn-md">3</button>
+                    <button type="button" class="btn btn-default btn-md">4</button>
+                    <button type="button" class="btn btn-default btn-md">5</button>
+                    <button type="button" class="btn btn-default btn-md">6</button>
+                    <button type="button" class="btn btn-default btn-md">7</button>
+                    <button type="button" class="btn btn-default btn-md">8</button>
+                    <button type="button" class="btn btn-default btn-md">9</button>
+                </div>
+                        </div>
+                </div>
+                <br>
             </div>
             <!--Container for the widgets.-->
-            <div class="container-fluid col-lg-1 col-sm-1 bg-info" id="widgets">
-                <!--Sets it so that the button it toggable in which it shows/hides the content.-->
-                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#widgetGroup">Widgets</button>
-                <!--Start off by showing the content "collapse in", "collapse" if start hidden.-->
-                <div id="widgetGroup" class="collapse in">
-                    <button type="button" class="btn btn-default btn-md">1</button>
-                    <button type="button" class="btn btn-default btn-md">2</button>
-                    <button type="button" class="btn btn-default btn-md">3</button>
-                    <button type="button" class="btn btn-default btn-md">4</button>
-                    <button type="button" class="btn btn-default btn-md">5</button>
-                    <button type="button" class="btn btn-default btn-md">6</button>
-                    <button type="button" class="btn btn-default btn-md">7</button>
-                    <button type="button" class="btn btn-default btn-md">8</button>
-                </div>
+            <div class="container-fluid col-md-2" id="widgets">
+
             </div>
-            <div class="col-lg-10 col-sm-5 bg-warning">
+            <div class="col-md-8">
                 <!--Canvas for drawing on.-->
                 <div class="container-fluid">
-                    <canvas id="myCanvas" height="720px" width="1000px" style="border:1px solid black;">
+                    <canvas class="myCanvas" style="border:1px solid black;">
                     </canvas>
                 </div>
             </div>
