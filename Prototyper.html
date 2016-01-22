@@ -64,11 +64,12 @@
         <div class="col-md-12">
             <!--Container for the widget settings.-->
             <div class="container-fluid col-md-3" id="tools">
-                <div class = "scrollbarsTools">
+                <div>
+                    <!--This is the widget options-->
                     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#WidgetsGroup">Widgets</button>
                     <!--Start off by showing the content "collapse in", "collapse" if start hidden.-->
                     <div id="WidgetsGroup" class="collapse in">
-                        <div class = "scrollbars">
+                        <div class = "side-bar-option">
                             <button type="button" class="btn btn-default btn-md" onClick="drawSquare()">TextBox</button>
                             <button type="button" class="btn btn-default btn-md" onClick="drawCircle()">Circle</button>
                             <button type="button" class="btn btn-default btn-md">3</button>
@@ -80,9 +81,135 @@
                             <button type="button" class="btn btn-default btn-md">9</button>
                         </div>
                     </div>
-                    <p>1. CHANGE THE BUTTON FOR THE WIDGETS GROUP TO A DROP-DOWN PILL OR MAKE THE BUTTON LONGER. I STILL THINK PILL THOUGH.</p>
-                    <p>2. MAKE A FORM INSTEAD OF A BUTTON GROUP FOR WIDGET SETTINGS</p>
-                    <p>3. CANVAS SIZE HAS BEEN IMPLEMENTED. FEEL FREE TO CONFIGURE.</p>
+                    <!--This is for widget properties and configuration of a widget-->
+                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#WidgetSetting">Widget Properties</button>
+                    <!--Start off by showing the content "collapse in", "collapse" if start hidden.-->
+                    <div id="WidgetSetting" class="collapse in">
+                        <div class = "side-bar-option">
+                            <form class="form-horizontal">
+                                <fieldset>
+
+                                    <!-- Form Name -->
+                                    <legend>Widget Name</legend>
+
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="WidIDInput">Widget ID</label>
+                                        <div class="col-md-4">
+                                            <input id="WidIDInput" name="WidIDInput" placeholder="widget id" class="form-control input-md" type="text">
+                                            <span class="help-block">help</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="WidHeightInput">Widget Height</label>
+                                        <div class="col-md-4">
+                                            <input id="WidHeightInput" name="WidHeightInput" placeholder="Height" class="form-control input-md" type="text">
+                                            <span class="help-block">Enter height (between X and Y)</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="WidWeightInput">Widget Weight</label>
+                                        <div class="col-md-4">
+                                            <input id="WidWeightInput" name="WidWeightInput" placeholder="Weight" class="form-control input-md" type="text">
+                                            <span class="help-block">Enter weight (between X and Y)</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="WidSize">Widget Size</label>
+                                        <div class="col-md-4">
+                                            <input id="WidSize" name="WidSize" placeholder="Size" class="form-control input-md" type="text">
+                                            <span class="help-block">Enter Size (between X and Y)</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="WidColor">Widget Color</label>
+                                        <div class="col-md-4">
+                                            <input id="WidColor" name="WidColor" placeholder="e.g. #000000" class="form-control input-md" type="text">
+                                            <span class="help-block">Enter Widget Color (In Hex)</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Select Basic -->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="FontSelect">Font Selection</label>
+                                        <div class="col-md-4">
+                                            <select id="FontSelect" name="FontSelect" class="form-control">
+                                                <option value="1">Font 1</option>
+                                                <option value="2">Font 2</option>
+                                                <option value="3">Font 3</option>
+                                                <option value="4">Font 4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Select Basic -->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="FontSizeSelect">Font Size</label>
+                                        <div class="col-md-4">
+                                            <select id="FontSizeSelect" name="FontSizeSelect" class="form-control">
+                                                <option value="1">8</option>
+                                                <option value="2">10</option>
+                                                <option value="3">12</option>
+                                                <option value="4">14</option>
+                                                <option value="5">16</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="FontColor">Font Color</label>
+                                        <div class="col-md-4">
+                                            <input id="FontColor" name="FontColor" placeholder="e.g. #000000" class="form-control input-md" type="text">
+                                            <span class="help-block">Enter Font Color (In Hex)</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Multiple Radios (inline) -->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="TouchClick">On-click or Touch</label>
+                                        <div class="col-md-4">
+                                            <label class="radio-inline" for="TouchClick-0">
+                                                <input name="TouchClick" id="TouchClick-0" value="1" checked="checked" type="radio">
+                                                On Click
+                                            </label>
+                                            <label class="radio-inline" for="TouchClick-1">
+                                                <input name="TouchClick" id="TouchClick-1" value="2" type="radio">
+                                                Touch
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Button -->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="RotateWid">Rotate</label>
+                                        <div class="col-md-4">
+                                            <button id="RotateWid" name="RotateWid" class="btn btn-primary">Button</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- File Button -->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="ImgUpload">Custom Image</label>
+                                        <div class="col-md-4">
+                                            <input id="ImgUpload" name="ImgUpload" class="input-file" type="file">
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </form>
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="col-md-8">

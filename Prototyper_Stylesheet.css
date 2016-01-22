@@ -23,3 +23,9 @@
     width: 5px;
     height: 5px;
 }
+
+/* Styles for side bar options, such as widgets, etc */
+.side-bar-option{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
