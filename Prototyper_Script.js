@@ -43,7 +43,6 @@ function lCanvas() {
 
 
 
-
 /**
  * Draws a square onto the canvas when it is called.
  * This can be further improved to be a textbox or a button.
@@ -80,8 +79,22 @@ function drawText() {
     var context = canvas.getContext("2d");
     var input = prompt("Enter text below", "Here...");
 
-    context.font="20px Arial";
+    context.font = "20px Arial";
     context.fillText(input, 500, 50)
-
-
 }
+
+    function createButton() {
+
+        var canvas = document.getElementById("myCanvas");
+        var context = canvas.getContext("2d");
+        var x = document.createElement("BUTTON");
+        var t = document.createTextNode("Click me");
+        x.appendChild(t);
+
+    }
+
+        context.appendChild(button, 500, 50);
+
+    }
+
+
