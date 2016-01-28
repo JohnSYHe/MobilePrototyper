@@ -69,14 +69,14 @@ function init() {
     }
 
     // Starts the mouse controller to enable the event listeners for user interaction.
-    mouseController(canvas);
+    mouseController(canvas, context);
 }
 
 /**
  * Controller for the mouse events.
  * @param canvas
  */
-function mouseController(canvas) {
+function mouseController(canvas, context) {
 
     // Mouse event listeners for the canvas.
     canvas.addEventListener("mousemove", getMousePosition);
@@ -117,7 +117,7 @@ function mouseController(canvas) {
 
 
     function drawWidget() {
-        alert("Hello, the coordinates are: " + xPosition + ", " + yPosition);
+        context.fillRect(xPosition, yPosition, 150, 100);
     }
 
 }
