@@ -41,7 +41,86 @@ function lCanvas() {
 
 // CANVAS SIZING AREA - ABOVE!!
 
+/**
+ * Initialise everything for canvas and context.
+ */
+function init() {
 
+    var canvas, context;
+
+    // Find the canvas element.
+    canvas = document.getElementById('myCanvas');
+    if (!canvas) {
+        alert('Error: I cannot find the canvas element!');
+        return;
+    }
+
+
+    if (!canvas.getContext) {
+        alert('Error: no canvas.getContext!');
+        return;
+    }
+
+    // Get the 2D canvas context.
+    context = canvas.getContext('2d');
+    if (!context) {
+        alert('Error: failed to getContext!');
+        return;
+    }
+
+    // Starts the mouse controller to enable the event listeners for user interaction.
+    mouseController(canvas);
+}
+
+/**
+ * Controller for the mouse events.
+ * @param canvas
+ */
+function mouseController(canvas) {
+
+    // Mouse event listeners for the canvas.
+    canvas.addEventListener("mousemove", getMousePosition);
+    canvas.addEventListener("mouseout", hideCoordinates);
+    canvas.addEventListener("click", drawWidget);
+
+    // Global mouse position variables.
+    var xPosition = 0;
+    var yPosition = 6;
+
+    /**
+     * Gets the mouse position and displays it visually in the
+     * @param event
+     * @returns {boolean}
+     */
+    function getMousePosition(event) {
+
+        // Gets the event coordinates and stores them into private variables for usage.
+        var x = event.x;
+        var y = event.y;
+        // Offset it to the canvas.
+        x -= canvas.offsetLeft;
+        y -= canvas.offsetTop;
+
+        var mouseCoordinates = "Coordinates: (" + x + "," + y + ")";
+        document.getElementById("mCoordinates").innerHTML = mouseCoordinates;
+
+        xPosition = x;
+        yPosition = y;
+    }
+
+    /**
+     * Hides the mouse position when it leaves the canvas.
+     */
+    function hideCoordinates() {
+        document.getElementById("mCoordinates").innerHTML = "";
+    }
+
+
+    function drawWidget() {
+        alert("Hello, the coordinates are: " + xPosition + ", " + yPosition);
+    }
+
+}
 
 /**
  * Draws a square onto the canvas when it is called.
