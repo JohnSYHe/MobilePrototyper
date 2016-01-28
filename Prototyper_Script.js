@@ -148,32 +148,33 @@ function drawCircle() {
 
 }
 
-/**
- * Messing around, trying to get a function that'll prompt the user to input some text.
- * The text will then be added to the canvas *
- */
-function drawText() {
-
-    var canvas = document.getElementById("myCanvas");
-    var context = canvas.getContext("2d");
-    var input = prompt("Enter text below", "Here...");
-
-    context.font = "20px Arial";
-    context.fillText(input, 500, 50)
-}
-
-    function createButton() {
-
-        var canvas = document.getElementById("myCanvas");
-        var context = canvas.getContext("2d");
-        var x = document.createElement("BUTTON");
-        var t = document.createTextNode("Click me");
-        x.appendChild(t);
-
-    }
-
-        context.appendChild(button, 500, 50);
-
-    }
+///**
+// * Messing around, trying to get a function that'll prompt the user to input some text.
+// * The text will then be added to the canvas *
+// */
+//function drawText() {
+//
+//    var canvas = document.getElementById("myCanvas");
+//    var context = canvas.getContext("2d");
+//    var input = prompt("Enter text below", "Here...");
+//
+//    context.font = "20px Arial";
+//    context.fillText(input, 500, 50)
+//}
+//
+//    function createButton() {
+//
+//        var canvas = document.getElementById("myCanvas");
+//        var context = canvas.getContext("2d");
+//        var x = document.createElement("BUTTON");
+//        var t = document.createTextNode("Click me");
+//        x.appendChild(t);
+//
+//    }
+//
+//        context.appendChild(button, 500, 50);
+//
+//    }
+//}
 
 
