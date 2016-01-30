@@ -48,6 +48,8 @@ function init() {
 
     var canvas, context;
 
+    var selection = 0;
+
     // Find the canvas element.
     canvas = document.getElementById('myCanvas');
     if (!canvas) {
@@ -116,8 +118,26 @@ function mouseController(canvas, context) {
     }
 
 
+    /**
+     * For now, I have 'brute forced' corrections to the co-ordinates.
+     * This will need to be rectified once the root of the problem is solved
+     * -Antonie
+     */
     function drawWidget() {
-        context.fillRect(xPosition, yPosition, 150, 100);
+        if(selection == 1)
+        context.fillRect(xPosition - 344, yPosition - 72, 150, 100);
+        else if(selection == 2){
+            context.beginPath();
+            context.arc(xPosition - 344, yPosition - 72,50,0,2*Math.PI);
+            context.stroke();
+        }
+        else if(selection == 3){
+                var input = prompt("Enter text below", "Here...");
+
+    context.font = "20px Arial";
+    context.fillText(input, xPosition - 344, yPosition - 72)
+        }
+
     }
 
 }
@@ -127,11 +147,16 @@ function mouseController(canvas, context) {
  * This can be further improved to be a textbox or a button.
  */
 function drawSquare() {
+    /**
+     *   Temp commented out
     var canvas = document.getElementById("myCanvas");
     var context = canvas.getContext("2d");
+
     //context.fillStyle = blue;
     context.fillRect(200, 20, 150, 100);
     // Parameters explanation for the rectangle: (X-Position, Y-Position, width, height)
+     */
+    selection = 1;
 }
 
 
@@ -140,11 +165,15 @@ function drawSquare() {
  * This can be useful for something.
  */
 function drawCircle() {
+/**
+ *   Temp commented out
     var canvas = document.getElementById("myCanvas");
     var context = canvas.getContext("2d");
     context.beginPath();
     context.arc(100,75,50,0,2*Math.PI);
     context.stroke();
+ */
+    selection = 2;
 
 }
 
@@ -152,7 +181,10 @@ function drawCircle() {
 // * Messing around, trying to get a function that'll prompt the user to input some text.
 // * The text will then be added to the canvas *
 // */
-//function drawText() {
+function drawText() {
+
+    selection = 3;
+}
 //
 //    var canvas = document.getElementById("myCanvas");
 //    var context = canvas.getContext("2d");
