@@ -48,8 +48,6 @@ function init() {
 
     var canvas, context;
 
-    var selection = 0;
-
     // Find the canvas element.
     canvas = document.getElementById('myCanvas');
     if (!canvas) {
@@ -106,8 +104,14 @@ function mouseController(canvas, context) {
         var mouseCoordinates = "Coordinates: (" + x + "," + y + ")";
         document.getElementById("mCoordinates").innerHTML = mouseCoordinates;
 
-        xPosition = x;
-        yPosition = y;
+        /**
+         * For now, I have 'brute forced' corrections to the co-ordinates.
+         * This will need to be rectified once the root of the problem is solved
+         * -Antonie
+         */
+
+        xPosition = x - 344;
+        yPosition = y - 72;
     }
 
     /**
@@ -117,27 +121,8 @@ function mouseController(canvas, context) {
         document.getElementById("mCoordinates").innerHTML = "";
     }
 
-
-    /**
-     * For now, I have 'brute forced' corrections to the co-ordinates.
-     * This will need to be rectified once the root of the problem is solved
-     * -Antonie
-     */
     function drawWidget() {
-        if(selection == 1)
-        context.fillRect(xPosition - 344, yPosition - 72, 150, 100);
-        else if(selection == 2){
-            context.beginPath();
-            context.arc(xPosition - 344, yPosition - 72,50,0,2*Math.PI);
-            context.stroke();
-        }
-        else if(selection == 3){
-                var input = prompt("Enter text below", "Here...");
-
-    context.font = "20px Arial";
-    context.fillText(input, xPosition - 344, yPosition - 72)
-        }
-
+        drawSquare(xPosition, yPosition);
     }
 
 }
@@ -146,17 +131,15 @@ function mouseController(canvas, context) {
  * Draws a square onto the canvas when it is called.
  * This can be further improved to be a textbox or a button.
  */
-function drawSquare() {
-    /**
-     *   Temp commented out
+function drawSquare(x, y) {
+
     var canvas = document.getElementById("myCanvas");
     var context = canvas.getContext("2d");
 
     //context.fillStyle = blue;
-    context.fillRect(200, 20, 150, 100);
-    // Parameters explanation for the rectangle: (X-Position, Y-Position, width, height)
-     */
-    selection = 1;
+    context.fillRect(x, y, 150, 100);
+    // Parameters explanation for the rectangle: (X-Position, Y-Position, width, height
+
 }
 
 
@@ -164,49 +147,26 @@ function drawSquare() {
  * Draws a circle onto the canvas when it is called.
  * This can be useful for something.
  */
-function drawCircle() {
-/**
- *   Temp commented out
+function drawCircle(x,y) {
+
     var canvas = document.getElementById("myCanvas");
     var context = canvas.getContext("2d");
     context.beginPath();
-    context.arc(100,75,50,0,2*Math.PI);
+    context.arc(x, y, 50, 0, 2 * Math.PI);
     context.stroke();
- */
-    selection = 2;
-
 }
 
-///**
-// * Messing around, trying to get a function that'll prompt the user to input some text.
-// * The text will then be added to the canvas *
-// */
-function drawText() {
 
-    selection = 3;
-}
-//
-//    var canvas = document.getElementById("myCanvas");
-//    var context = canvas.getContext("2d");
-//    var input = prompt("Enter text below", "Here...");
-//
-//    context.font = "20px Arial";
-//    context.fillText(input, 500, 50)
-//}
-//
-//    function createButton() {
-//
-//        var canvas = document.getElementById("myCanvas");
-//        var context = canvas.getContext("2d");
-//        var x = document.createElement("BUTTON");
-//        var t = document.createTextNode("Click me");
-//        x.appendChild(t);
-//
-//    }
-//
-//        context.appendChild(button, 500, 50);
-//
-//    }
-//}
+function drawText(x,y) {
+
+    var canvas = document.getElementById("myCanvas");
+    var context = canvas.getContext("2d");
+
+    var input = prompt("Enter text below", "Here...");
+
+    context.font = "20px Arial";
+    context.fillText(x, y);
+
+    }
 
 

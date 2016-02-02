@@ -69,10 +69,11 @@
                     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#WidgetsGroup">Widgets</button>
                     <!--Start off by showing the content "collapse in", "collapse" if start hidden.-->
                     <div id="WidgetsGroup" class="collapse in">
+                    <div id="WidgetsGroup" class="collapse in">
                         <div class = "side-bar-option">
-                            <img src="icons/TextboxIcon.png" style="width:64px;height:64px;" onClick="drawSquare()"></button>
-                            <img src="icons/CircleIcon.png" style="width:64px;height:64px;" onClick="drawCircle()"></button>
-                            <img src="icons/UploadImageIcon.png" style="width:64px;height:64px;"></button>
+                            <button type="button" style="width:64px;height:64px;" class="btn btn-default btn-md" onClick="drawWidget()">Square</button>
+                            <button type="button" style="width:64px;height:64px;" class="btn btn-default btn-md" onClick="drawCircle()">Circle</button>
+                            <button type="button" style="width:64px;height:64px;" class="btn btn-default btn-md" >Image</button>
                             <button type="button" style="width:64px;height:64px;" class="btn btn-default btn-md" onClick="drawText()">Text</button>
                             <button type="button" class="btn btn-default btn-md">5</button>
                             <button type="button" class="btn btn-default btn-md">6</button>
@@ -209,6 +210,7 @@
 
                         </div>
                     </div>
+					
 
                 </div>
             </div>
