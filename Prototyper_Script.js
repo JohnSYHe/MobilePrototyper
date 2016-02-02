@@ -49,6 +49,7 @@ function init() {
     var canvas, context;
 
     // Find the canvas element.
+
     canvas = document.getElementById('myCanvas');
     if (!canvas) {
         alert('Error: I cannot find the canvas element!');
@@ -62,6 +63,7 @@ function init() {
     }
 
     // Get the 2D canvas context.
+
     context = canvas.getContext('2d');
     if (!context) {
         alert('Error: failed to getContext!');
@@ -78,40 +80,69 @@ function init() {
  */
 function mouseController(canvas, context) {
 
-    // Mouse event listeners for the canvas.
-    canvas.addEventListener("mousemove", getMousePosition);
-    canvas.addEventListener("mouseout", hideCoordinates);
-    canvas.addEventListener("click", drawWidget);
-
     // Global mouse position variables.
     var xPosition = 0;
     var yPosition = 6;
 
+    // Mouse event listeners for the canvas.
+    canvas.addEventListener("mousemove", function(event) {
+        var mousePos = getMousePosition(canvas, event);
+        var mouseCoordinates = 'Coordinates: ' + mousePos.x + ',' + mousePos.y;
+        //Sets these variables for use in other methods.
+        xPosition = mousePos.x;
+        yPosition = mousePos.y;
+        displayCoordinates(mouseCoordinates);
+    }, false);
+    canvas.addEventListener("mouseout", hideCoordinates);
+    canvas.addEventListener("click", drawWidget);
+
+
+
+
     /**
+     * Johns old method. Leaving it as is, commented out.
      * Gets the mouse position and displays it visually in the
      * @param event
      * @returns {boolean}
      */
-    function getMousePosition(event) {
 
-        // Gets the event coordinates and stores them into private variables for usage.
-        var x = event.x;
-        var y = event.y;
-        // Offset it to the canvas.
-        x -= canvas.offsetLeft;
-        y -= canvas.offsetTop;
+    //function getMousePosition(event) {
 
-        var mouseCoordinates = "Coordinates: (" + x + "," + y + ")";
-        document.getElementById("mCoordinates").innerHTML = mouseCoordinates;
+        //// Gets the event coordinates and stores them into private variables for usage.
+        //var x = event.x;
+        //var y = event.y;
+        //// Offset it to the canvas.
+        //x -= canvas.offsetLeft;
+        //y -= canvas.offsetTop;
 
-        /**
-         * For now, I have 'brute forced' corrections to the co-ordinates.
-         * This will need to be rectified once the root of the problem is solved
-         * -Antonie
-         */
+        //var mouseCoordinates = "Coordinates: (" + x + "," + y + ")";
+        //document.getElementById("mCoordinates").innerHTML = mouseCoordinates;
 
-        xPosition = x - 344;
-        yPosition = y - 72;
+        //xPosition = x;
+        //yPosition = y;
+    //}
+
+    /**
+     *Gets the mouse position.
+     * @param canvas     *
+     * @returns x and y coordinates. Use (VARIABLE NAME).x and (VARIABLE NAME).y
+     */
+    function getMousePosition(canvas, event) {
+        var rect = canvas.getBoundingClientRect();
+
+        return {
+            x: Math.round((event.clientX-rect.left)/(rect.right-rect.left)*canvas.width),
+            y: Math.round((event.clientY-rect.top)/(rect.bottom-rect.top)*canvas.height)
+        };
+    }
+
+    /**
+     * Sets and displays the co-ordinates below the canvas.
+     * @param coordinates = the co-ords to be displayed
+     */
+    function displayCoordinates(coordinates){
+
+        document.getElementById("mCoordinates").innerHTML = coordinates;
     }
 
     /**
@@ -121,6 +152,9 @@ function mouseController(canvas, context) {
         document.getElementById("mCoordinates").innerHTML = "";
     }
 
+    /**
+     * Draw method. Currently set to only call the draw square method.
+     */
     function drawWidget() {
         drawSquare(xPosition, yPosition);
     }
@@ -165,7 +199,7 @@ function drawText(x,y) {
     var input = prompt("Enter text below", "Here...");
 
     context.font = "20px Arial";
-    context.fillText(x, y);
+    context.fillText(input, x, y);
 
     }
 
