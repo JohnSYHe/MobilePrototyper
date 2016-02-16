@@ -1,31 +1,72 @@
-
-/* Box styles */
-.scrollbars {
-    border: none;
-    padding: 5px;
-    font: 24px/36px sans-serif;
-    width: 300px;
-    height: 250px;
-    overflow: scroll;
-}
-/* for whole tools */
-.scrollbarsTools{
-    border: 1px black solid;
-    padding: 5px;
-    font: 24px/36px sans-serif;
-    width: 320px;
-    height:calc(100vh - 82px);
-    overflow: scroll;
+#canvasContainer {
+	/* Locks the position so its in the same position everytime. */
+	position: absolute;
+	/* Move it away from the left by 450px. */
+	left: 450px;
+	top: 80px;
 }
 
-/* Scrollbar styles */
-::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
+#appSideBar {
+	/* Set the width of the side-bar. */
+	width: 375px;
+	/* Float it left. */
+	float: left;
 }
 
-/* Styles for side bar options, such as widgets, etc */
-.side-bar-option{
-    padding-top: 10px;
-    padding-bottom: 10px;
+#radioContainer button {
+	/* Button width. */
+	width: 64px;
+	/* Button height. */
+	height: 64px;
+	/* Spaces out the buttons to the left by 5px apart. */
+	margin-left: 10px;
+	/* Spaces out the buttons below by 5px apart. */
+	margin-bottom: 10px;
+	/* Make the buttons float left. */
+	float: left;
+}
+
+#widgetSettings div{
+	margin-left: 5px;
+	margin-right: 20px;
+	margin-bottom: 10px;
+}
+
+#widgetSettings #widgID {
+	/* Needs changing. */
+	width: 275px;
+}
+
+#widgetSettings #widgHeight {
+	width: 100px;
+}
+
+#widgetSettings #widgWidth {
+	width: 100px;
+}
+
+#widgetSettings #widgColour {
+	width: 275px;
+}
+
+#widgetSettings #widgFontStyle {
+
+}
+
+#widgetSettings #widgFontSize {
+	width: 90px;
+}
+
+
+#widgetSettings #widgFontColour {
+	width: 250px;
+}
+#widgetSettings #imageUpload {
+	width: 235px;
+}
+
+/* Removes the collapse animation. */
+.collapsing {
+    -webkit-transition: none;
+    transition: none;
 }
