@@ -1,9 +1,3 @@
-/**
- * Created by John He on 11/12/2015.
- */
-
-
-
 // CANVAS SIZING AREA - BELOW!!
 
 /**
@@ -49,13 +43,11 @@ function init() {
     var canvas, context;
 
     // Find the canvas element.
-
     canvas = document.getElementById('myCanvas');
     if (!canvas) {
         alert('Error: I cannot find the canvas element!');
         return;
     }
-
 
     if (!canvas.getContext) {
         alert('Error: no canvas.getContext!');
@@ -74,57 +66,24 @@ function init() {
     mouseController(canvas, context);
 }
 
+// Global Mouse Positions
+var xPosition = 0;
+var yPosition = 0;
+
 /**
  * Controller for the mouse events.
  * @param canvas
  */
 function mouseController(canvas, context) {
-
-    // Global mouse position variables.
-    var xPosition = 0;
-    var yPosition = 6;
-
-    // Mouse event listeners for the canvas.
-    canvas.addEventListener("mousemove", function(event) {
-        var mousePos = getMousePosition(canvas, event);
-        var mouseCoordinates = 'Coordinates: ' + mousePos.x + ',' + mousePos.y;
-        //Sets these variables for use in other methods.
-        xPosition = mousePos.x;
-        yPosition = mousePos.y;
-        displayCoordinates(mouseCoordinates);
-    }, false);
-    canvas.addEventListener("mouseout", hideCoordinates);
-    canvas.addEventListener("click", drawWidget);
-
-
-
-
-    /**
-     * Johns old method. Leaving it as is, commented out.
-     * Gets the mouse position and displays it visually in the
-     * @param event
-     * @returns {boolean}
-     */
-
-    //function getMousePosition(event) {
-
-        //// Gets the event coordinates and stores them into private variables for usage.
-        //var x = event.x;
-        //var y = event.y;
-        //// Offset it to the canvas.
-        //x -= canvas.offsetLeft;
-        //y -= canvas.offsetTop;
-
-        //var mouseCoordinates = "Coordinates: (" + x + "," + y + ")";
-        //document.getElementById("mCoordinates").innerHTML = mouseCoordinates;
-
-        //xPosition = x;
-        //yPosition = y;
-    //}
-
+	
+// Event Listeners for the mouse.
+canvas.addEventListener("mousemove", positionManager);
+canvas.addEventListener("mouseout", hideCoordinates);
+canvas.addEventListener("click", drawWidget);
+	
     /**
      *Gets the mouse position.
-     * @param canvas     *
+     * @param canvas
      * @returns x and y coordinates. Use (VARIABLE NAME).x and (VARIABLE NAME).y
      */
     function getMousePosition(canvas, event) {
@@ -134,16 +93,33 @@ function mouseController(canvas, context) {
             x: Math.round((event.clientX-rect.left)/(rect.right-rect.left)*canvas.width),
             y: Math.round((event.clientY-rect.top)/(rect.bottom-rect.top)*canvas.height)
         };
+    }	
+	
+	/**
+	 * Manages and directs the mouse positions.
+	 * 
+	 * @param event 
+	 */
+	function positionManager() {
+		var mousePos = getMousePosition(canvas, event);
+		// Formats a message that shows the coordinates.
+		var mouseCoordinates = 'Coordinates: ' + mousePos.x + ',' + mousePos.y;
+		
+		xPosition = mousePos.x;
+		yPosition = mousePos.y;
+		
+		// Sends the message to be displayed.
+		displayCoordinates(mouseCoordinates);
     }
-
+		
     /**
      * Sets and displays the co-ordinates below the canvas.
      * @param coordinates = the co-ords to be displayed
      */
     function displayCoordinates(coordinates){
-
         document.getElementById("mCoordinates").innerHTML = coordinates;
     }
+	
 
     /**
      * Hides the mouse position when it leaves the canvas.
@@ -151,58 +127,61 @@ function mouseController(canvas, context) {
     function hideCoordinates() {
         document.getElementById("mCoordinates").innerHTML = "";
     }
-
-    /**
-     * Draw method. Currently set to only call the draw square method.
-     */
-    function drawWidget() {
-        drawSquare(xPosition, yPosition);
-    }
+	
 
 }
 
 /**
- * Draws a square onto the canvas when it is called.
- * This can be further improved to be a textbox or a button.
+ * Draw method. Currently set to only call the draw square method.
  */
-function drawSquare(x, y) {
-
-    var canvas = document.getElementById("myCanvas");
-    var context = canvas.getContext("2d");
-
-    //context.fillStyle = blue;
-    context.fillRect(x, y, 150, 100);
-    // Parameters explanation for the rectangle: (X-Position, Y-Position, width, height
-
-}
-
-
-/**
- * Draws a circle onto the canvas when it is called.
- * This can be useful for something.
- */
-function drawCircle(x,y) {
-
-    var canvas = document.getElementById("myCanvas");
-    var context = canvas.getContext("2d");
-    context.beginPath();
-    context.arc(x, y, 50, 0, 2 * Math.PI);
-    context.stroke();
-}
-
-
-function drawText(x,y) {
-
-    var canvas = document.getElementById("myCanvas");
-    var context = canvas.getContext("2d");
-
-    var input = prompt("Enter text below", "Here...");
-
-    context.font = "20px Arial";
-    context.fillText(input, x, y);
-}
+function drawWidget() {
+	drawSquare(xPosition, yPosition);
+	
+	
 	
 	/**
+	 * Draws a square onto the canvas when it is called.
+	 * This can be further improved to be a textbox or a button.
+	 */
+	function drawSquare(x, y) {
+		var canvas = document.getElementById("myCanvas");
+		var context = canvas.getContext("2d");
+
+		//context.fillStyle = blue;
+		context.fillRect(x, y, 150, 100);
+		// Parameters explanation for the rectangle: (X-Position, Y-Position, width, height
+
+	}
+
+	/**
+	 * Draws a circle onto the canvas when it is called.
+	 * This can be useful for something.
+	 */
+	function drawCircle(x,y) {
+		var canvas = document.getElementById("myCanvas");
+		var context = canvas.getContext("2d");
+		context.beginPath();
+		context.arc(x, y, 50, 0, 2 * Math.PI);
+		context.stroke();
+	}
+
+
+	function drawText(x,y) {
+		var canvas = document.getElementById("myCanvas");
+		var context = canvas.getContext("2d");
+
+		var input = prompt("Enter text below", "Here...");
+
+		context.font = "20px Arial";
+		context.fillText(input, x, y);
+	}
+	
+}
+
+
+
+	
+/**
  * Clears the canvas board.
  */
 function clearCanvas() {
@@ -211,6 +190,3 @@ function clearCanvas() {
 
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
-
-
-
