@@ -70,32 +70,22 @@ function init() {
 var xPosition = 0;
 var yPosition = 0;
 
-<<<<<<< HEAD
 //Global variable for which widget is selected. This should be changed to which button
 //has been selected so that it can be used for other methods. In general, using this global
 //variable in the first place is not a good idea and should be handled very carefully
 //or reworked later - Antonie
 var widgetSelection = none;
 
-=======
->>>>>>> origin/master
 /**
  * Controller for the mouse events.
  * @param canvas
  */
 function mouseController(canvas, context) {
 	
-<<<<<<< HEAD
 	// Event Listeners for the mouse.
 	canvas.addEventListener("mousemove", positionManager);
-    canvas.addEventListener("mouseout", hideCoordinates);
-    canvas.addEventListener("click", drawWidget);
-=======
-// Event Listeners for the mouse.
-canvas.addEventListener("mousemove", positionManager);
-canvas.addEventListener("mouseout", hideCoordinates);
-canvas.addEventListener("click", drawWidget);
->>>>>>> origin/master
+	canvas.addEventListener("mouseout", hideCoordinates);
+	canvas.addEventListener("click", drawWidget);
 	
     /**
      *Gets the mouse position.
@@ -111,18 +101,10 @@ canvas.addEventListener("click", drawWidget);
         };
     }	
 	
-	/**
-	 * Manages and directs the mouse positions.
-<<<<<<< HEAD
-	 * @param event 
-	 */
-	function positionManager(event) {
-=======
 	 * 
 	 * @param event 
 	 */
-	function positionManager() {
->>>>>>> origin/master
+	function positionManager(event) {
 		var mousePos = getMousePosition(canvas, event);
 		// Formats a message that shows the coordinates.
 		var mouseCoordinates = 'Coordinates: ' + mousePos.x + ',' + mousePos.y;
@@ -142,29 +124,22 @@ canvas.addEventListener("click", drawWidget);
         document.getElementById("mCoordinates").innerHTML = coordinates;
     }
 	
-
     /**
      * Hides the mouse position when it leaves the canvas.
      */
     function hideCoordinates() {
         document.getElementById("mCoordinates").innerHTML = "";
     }
-<<<<<<< HEAD
 }
 
 function setDrawingMode(btnValue) {
     widgetSelection = btnValue;
-=======
-	
-
->>>>>>> origin/master
 }
 
 /**
  * Draw method. Currently set to only call the draw square method.
  */
 function drawWidget() {
-<<<<<<< HEAD
     //drawSquare(xPosition, yPosition);
     if (widgetSelection == 1) {
         drawSquare(xPosition, yPosition);
@@ -175,14 +150,6 @@ function drawWidget() {
     else if (widgetSelection == 4) {
         drawText(xPosition, yPosition)
     }
-
-
-=======
-	drawSquare(xPosition, yPosition);
-	
-	
-	
->>>>>>> origin/master
 	/**
 	 * Draws a square onto the canvas when it is called.
 	 * This can be further improved to be a textbox or a button.
@@ -194,10 +161,6 @@ function drawWidget() {
 		//context.fillStyle = blue;
 		context.fillRect(x, y, 150, 100);
 		// Parameters explanation for the rectangle: (X-Position, Y-Position, width, height
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 	}
 
 	/**
@@ -212,14 +175,9 @@ function drawWidget() {
 		context.stroke();
 	}
 
-<<<<<<< HEAD
 	/**
 	 *
-	 *
 	*/
-=======
-
->>>>>>> origin/master
 	function drawText(x,y) {
 		var canvas = document.getElementById("myCanvas");
 		var context = canvas.getContext("2d");
@@ -229,18 +187,8 @@ function drawWidget() {
 		context.font = "20px Arial";
 		context.fillText(input, x, y);
 	}
-<<<<<<< HEAD
-=======
-	
->>>>>>> origin/master
 }
 
-
-
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
 	
 /**
  * Clears the canvas board.
@@ -248,14 +196,6 @@ function drawWidget() {
 function clearCanvas() {
     var canvas = document.getElementById("myCanvas");
     var context = canvas.getContext("2d");
-<<<<<<< HEAD
-
-    context.clearRect(0, 0, canvas.width, canvas.height);
-}
-
-
-=======
->>>>>>> origin/master
 
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
