@@ -101,6 +101,7 @@ function mouseController(canvas, context) {
         };
     }	
 	
+	/*
 	 * 
 	 * @param event 
 	 */
@@ -141,13 +142,13 @@ function setDrawingMode(btnValue) {
  */
 function drawWidget() {
     //drawSquare(xPosition, yPosition);
-    if (widgetSelection == 1) {
+    if (widgetSelection == 0) {
         drawSquare(xPosition, yPosition);
     }
-    else if (widgetSelection == 2) {
+    else if (widgetSelection == 1) {
         drawCircle(xPosition, yPosition)
     }
-    else if (widgetSelection == 4) {
+    else if (widgetSelection == 2) {
         drawText(xPosition, yPosition)
     }
 	/**
