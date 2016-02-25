@@ -74,7 +74,7 @@ var yPosition = 0;
 //has been selected so that it can be used for other methods. In general, using this global
 //variable in the first place is not a good idea and should be handled very carefully
 //or reworked later - Antonie
-var widgetSelection = none;
+var widgetSelection = null;
 
 /**
  * Controller for the mouse events.
@@ -85,7 +85,7 @@ function mouseController(canvas, context) {
 	// Event Listeners for the mouse.
 	canvas.addEventListener("mousemove", positionManager);
 	canvas.addEventListener("mouseout", hideCoordinates);
-	canvas.addEventListener("click", drawWidget);
+	canvas.addEventListener("click", widgetController);
 	
     /**
      *Gets the mouse position.
@@ -140,7 +140,24 @@ function setDrawingMode(btnValue) {
 /**
  * Draw method. Currently set to only call the draw square method.
  */
-function drawWidget() {
+function widgetController() {
+	
+//	var objectArray = [
+//		who,
+//		what,
+//		where	
+//	]
+	
+//	if (widgetSeleciton == null) {
+//		if(mouseDownOnWidget == true){
+//		// Code for moving.
+//		}
+//		else{
+//		//do nothing/break
+//		}
+//	}
+	
+	
     //drawSquare(xPosition, yPosition);
     if (widgetSelection == 0) {
         drawSquare(xPosition, yPosition);
@@ -162,6 +179,13 @@ function drawWidget() {
 		//context.fillStyle = blue;
 		context.fillRect(x, y, 150, 100);
 		// Parameters explanation for the rectangle: (X-Position, Y-Position, width, height
+		
+
+		// if there is an object in the mouse position where the object is to be drawn, add +20 to the x 
+		
+		// Add into array after every draw
+		
+		widgetSelection = null;
 	}
 
 	/**
@@ -174,10 +198,14 @@ function drawWidget() {
 		context.beginPath();
 		context.arc(x, y, 50, 0, 2 * Math.PI);
 		context.stroke();
+		
+		widgetSelection = null;
 	}
 
 	/**
-	 *
+	 * Draws the text that the user inputs
+	 * @param x X-Position of the mouse to be placed on the canvas.
+	 * @param y Y-Positition of the mouse to be placed on the canvas.
 	*/
 	function drawText(x,y) {
 		var canvas = document.getElementById("myCanvas");
@@ -187,6 +215,8 @@ function drawWidget() {
 
 		context.font = "20px Arial";
 		context.fillText(input, x, y);
+		
+		widgetSelection = null;
 	}
 }
 
