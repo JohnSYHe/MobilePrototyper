@@ -76,7 +76,7 @@ var widgetSelected = null;
 
 // Array for all the objects.
 var objectArray = [];
-
+// Counts the amount of objects created.
 var objectCounter = 0;
 
 /**
@@ -166,8 +166,10 @@ function widgetController() {
 		var squareWidth = 100;
 		var squareLength = 100;
 		
-		//context.fillStyle = blue;
-		context.fillRect(xPosition, yPosition, squareWidth, squareLength);
+		// Make the rectangle blue.
+		context.fillStyle = "blue";
+		// Place a rectangle centered at mouse position.
+		context.fillRect(xPosition - 50, yPosition - 50, squareWidth, squareLength);
 		
 		document.getElementById("test").innerHTML = "Testing: " + xPosition + ", " 
 			+ yPosition + ", " + squareWidth + ", " + squareLength + ".";
@@ -181,8 +183,10 @@ function widgetController() {
 		// How many elements are in the array.
 		console.log("Total Squares: " + objectArray.length);
 		
-		console.log("What is inside the array: " + objectArray);
 		
+		for (i = 0; i < objectArray.length; i++) {
+			console.log("What is inside the array: " + objectArray[i]);
+		}
 		widgetSelected = null;
 	}
 	
@@ -191,8 +195,6 @@ function widgetController() {
 	 * This can be useful for something.
 	 */
 	function drawCircle() {
-		var canvas = document.getElementById("myCanvas");
-		var context = canvas.getContext("2d");
 		context.beginPath();
 		context.arc(xPosition, yPosition, 50, 0, 2 * Math.PI);
 		context.stroke();
@@ -206,8 +208,6 @@ function widgetController() {
 	 * @param y Y-Positition of the mouse to be placed on the canvas.
 	*/
 	function drawText(x,y) {
-		var canvas = document.getElementById("myCanvas");
-		var context = canvas.getContext("2d");
 
 		var input = prompt("Enter text below", "Here...");
 
