@@ -1,5 +1,4 @@
 // CANVAS SIZING AREA - BELOW!!
-
 /**
  * Sets the canvas size to: small.
  */
@@ -32,15 +31,16 @@ function lCanvas() {
     canvas.width = 480;
     canvas.height = 640;
 }
-
 // CANVAS SIZING AREA - ABOVE!!
+
+var canvas, context;
 
 /**
  * Initialise everything for canvas and context.
  */
 function init() {
 
-    var canvas, context;
+    
 
     // Find the canvas element.
     canvas = document.getElementById('myCanvas');
@@ -63,7 +63,7 @@ function init() {
     }
 
     // Starts the mouse controller to enable the event listeners for user interaction.
-    mouseController(canvas, context);
+	mouseController(canvas, context);
 }
 
 // Global Mouse Positions
@@ -71,10 +71,13 @@ var xPosition = 0;
 var yPosition = 0;
 
 //Global variable for which widget is selected. This should be changed to which button
-//has been selected so that it can be used for other methods. In general, using this global
-//variable in the first place is not a good idea and should be handled very carefully
-//or reworked later - Antonie
-var widgetSelection = null;
+//has been selected so that it can be used for other methods.
+var widgetSelected = null;
+
+// Array for all the objects.
+var objectArray = [];
+// Counts the amount of objects created.
+var objectCounter = 0;
 
 /**
  * Controller for the mouse events.
@@ -102,8 +105,7 @@ function mouseController(canvas, context) {
     }	
 	
 	/*
-	 * 
-	 * @param event 
+	 * @param event Event listener for the mouse and for it to work with Firefox.
 	 */
 	function positionManager(event) {
 		var mousePos = getMousePosition(canvas, event);
@@ -115,26 +117,30 @@ function mouseController(canvas, context) {
 		
 		// Sends the message to be displayed.
 		displayCoordinates(mouseCoordinates);
-    }
 		
-    /**
-     * Sets and displays the co-ordinates below the canvas.
-     * @param coordinates = the co-ords to be displayed
-     */
-    function displayCoordinates(coordinates){
-        document.getElementById("mCoordinates").innerHTML = coordinates;
     }
 	
-    /**
-     * Hides the mouse position when it leaves the canvas.
-     */
-    function hideCoordinates() {
-        document.getElementById("mCoordinates").innerHTML = "";
-    }
+	/**
+	 * Sets and displays the co-ordinates below the canvas.
+	 * @param coordinates = the co-ords to be displayed
+	 */
+	function displayCoordinates(coordinates){
+		document.getElementById("mCoordinates").innerHTML = coordinates;
+	}
+
+	/**
+	 * Hides the mouse position when it leaves the canvas.
+	 */
+	function hideCoordinates() {
+		document.getElementById("mCoordinates").innerHTML = "";
+	}
 }
 
+/**
+ * Gets the value of the widget selected on the sidebar.
+ */
 function setDrawingMode(btnValue) {
-    widgetSelection = btnValue;
+    widgetSelected = btnValue;
 }
 
 /**
@@ -142,64 +148,58 @@ function setDrawingMode(btnValue) {
  */
 function widgetController() {
 	
-//	var objectArray = [
-//		who,
-//		what,
-//		where	
-//	]
-	
-//	if (widgetSeleciton == null) {
-//		if(mouseDownOnWidget == true){
-//		// Code for moving.
-//		}
-//		else{
-//		//do nothing/break
-//		}
-//	}
-	
-	
-    //drawSquare(xPosition, yPosition);
-    if (widgetSelection == 0) {
+    if (widgetSelected == 0) {
         drawSquare(xPosition, yPosition);
     }
-    else if (widgetSelection == 1) {
+    else if (widgetSelected == 1) {
         drawCircle(xPosition, yPosition)
     }
-    else if (widgetSelection == 2) {
+    else if (widgetSelected == 2) {
         drawText(xPosition, yPosition)
     }
+	
 	/**
 	 * Draws a square onto the canvas when it is called.
 	 * This can be further improved to be a textbox or a button.
 	 */
-	function drawSquare(x, y) {
-		var canvas = document.getElementById("myCanvas");
-		var context = canvas.getContext("2d");
-
-		//context.fillStyle = blue;
-		context.fillRect(x, y, 150, 100);
-		// Parameters explanation for the rectangle: (X-Position, Y-Position, width, height
+	function drawSquare() {
+		var squareWidth = 100;
+		var squareLength = 100;
 		
-
-		// if there is an object in the mouse position where the object is to be drawn, add +20 to the x 
+		// Make the rectangle blue.
+		context.fillStyle = "blue";
+		// Place a rectangle centered at mouse position.
+		context.fillRect(xPosition - 50, yPosition - 50, squareWidth, squareLength);
 		
-		// Add into array after every draw
+		document.getElementById("test").innerHTML = "Testing: " + xPosition + ", " 
+			+ yPosition + ", " + squareWidth + ", " + squareLength + ".";
 		
-		widgetSelection = null;
+		// Adds the square object into the array.
+		objectArray.push({xPos: xPosition, yPos: yPosition, width: squareWidth, length: squareLength});
+		
+		console.log(objectArray[objectCounter]);
+		// increments the counter up so it displays the next object values.
+		objectCounter++;
+		// How many elements are in the array.
+		console.log("Total Squares: " + objectArray.length);
+		
+		
+		for (i = 0; i < objectArray.length; i++) {
+			console.log("What is inside the array: " + objectArray[i]);
+		}
+		widgetSelected = null;
 	}
-
+	
 	/**
 	 * Draws a circle onto the canvas when it is called.
 	 * This can be useful for something.
 	 */
-	function drawCircle(x,y) {
-		var canvas = document.getElementById("myCanvas");
-		var context = canvas.getContext("2d");
+	function drawCircle() {
 		context.beginPath();
-		context.arc(x, y, 50, 0, 2 * Math.PI);
+		context.arc(xPosition, yPosition, 50, 0, 2 * Math.PI);
 		context.stroke();
 		
-		widgetSelection = null;
+		widgetSelected = null;
 	}
 
 	/**
@@ -208,15 +208,13 @@ function widgetController() {
 	 * @param y Y-Positition of the mouse to be placed on the canvas.
 	*/
 	function drawText(x,y) {
-		var canvas = document.getElementById("myCanvas");
-		var context = canvas.getContext("2d");
 
 		var input = prompt("Enter text below", "Here...");
 
 		context.font = "20px Arial";
-		context.fillText(input, x, y);
+		context.fillText(input, xPosition, yPosition);
 		
-		widgetSelection = null;
+		widgetSelected = null;
 	}
 }
 
