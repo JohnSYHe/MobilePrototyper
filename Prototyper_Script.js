@@ -40,8 +40,6 @@ var canvas, context;
  */
 function init() {
 
-    
-
     // Find the canvas element.
     canvas = document.getElementById('myCanvas');
     if (!canvas) {
@@ -66,12 +64,11 @@ function init() {
 	mouseController(canvas, context);
 }
 
-// Global Mouse Positions
+// Global Mouse Positions.
 var xPosition = 0;
 var yPosition = 0;
 
-//Global variable for which widget is selected. This should be changed to which button
-//has been selected so that it can be used for other methods.
+//Global variable for which widget is selected.
 var widgetSelected = null;
 
 // Array for all the objects.
@@ -104,13 +101,13 @@ function mouseController(canvas, context) {
         };
     }	
 	
-	/*
+	/**
 	 * @param event Event listener for the mouse and for it to work with Firefox.
 	 */
 	function positionManager(event) {
 		var mousePos = getMousePosition(canvas, event);
 		// Formats a message that shows the coordinates.
-		var mouseCoordinates = 'Coordinates: ' + mousePos.x + ',' + mousePos.y;
+		var mouseCoordinates = "Coordinates: " + mousePos.x + "-X, " + mousePos.y + "-Y ";
 		
 		xPosition = mousePos.x;
 		yPosition = mousePos.y;
@@ -148,15 +145,48 @@ function setDrawingMode(btnValue) {
  */
 function widgetController() {
 	
-    if (widgetSelected == 0) {
+    if (widgetSelected == null) {
+		widgetScanner();
+	} else if (widgetSelected == 0) {
         drawSquare(xPosition, yPosition);
-    }
-    else if (widgetSelected == 1) {
+    } else if (widgetSelected == 1) {
         drawCircle(xPosition, yPosition)
-    }
-    else if (widgetSelected == 2) {
+    } else if (widgetSelected == 2) {
         drawText(xPosition, yPosition)
     }
+	
+	/**
+	 * Console notifications for debugging.
+	 */
+	function objectArrayNotification() {
+		// Displays the details of the object being put into the array.
+		console.log(objectArray[objectCounter]);
+		// increments the counter up so it displays the next object values.
+		objectCounter++;
+		// How many elements are in the array.
+		console.log("Total Objects in Array: " + objectArray.length);
+		
+		for (i = 0; i < objectArray.length; i++) {
+			console.log("What is inside the array: " + objectArray[i].arrayObject);
+		}
+	}
+	
+	/**
+	 * If there are no widgets selected, this will scan where the mouse clicks
+	 * on the canvas and if it clicked on a widget. In progress.
+	 */
+	function widgetScanner() {
+	
+		if (objectArray.length == 0) {
+			console.log("There doesn't seem to be anything here....");
+		} else {
+			for (i = 0; i < objectArray.length; i++) {
+				if (objectArray[i].arrayObject.includes("square")) {
+					console.log(objectArray[i].arrayObject);
+				}
+			}
+		}
+	}
 	
 	/**
 	 * Draws a square onto the canvas when it is called.
@@ -169,25 +199,17 @@ function widgetController() {
 		// Make the rectangle blue.
 		context.fillStyle = "blue";
 		// Place a rectangle centered at mouse position.
-		context.fillRect(xPosition - 50, yPosition - 50, squareWidth, squareLength);
-		
-		document.getElementById("test").innerHTML = "Testing: " + xPosition + ", " 
-			+ yPosition + ", " + squareWidth + ", " + squareLength + ".";
+		context.fillRect((xPosition - squareWidth / 2), 
+			(yPosition - squareLength / 2), squareWidth, squareLength);
 		
 		// Adds the square object into the array.
-		objectArray.push({xPos: xPosition, yPos: yPosition, width: squareWidth, length: squareLength});
+		objectArray.push({arrayObject: "square" + objectCounter, xPos: xPosition, 
+			yPos: yPosition, width: squareWidth, length: squareLength});
 		
-		console.log(objectArray[objectCounter]);
-		// increments the counter up so it displays the next object values.
-		objectCounter++;
-		// How many elements are in the array.
-		console.log("Total Squares: " + objectArray.length);
-		
-		
-		for (i = 0; i < objectArray.length; i++) {
-			console.log("What is inside the array: " + objectArray[i]);
-		}
-		widgetSelected = null;
+		// Notify console for testing.
+		objectArrayNotification();
+		// Disables the selected widget to prevent spam.
+		widgetSelected = null;		
 	}
 	
 	/**
@@ -195,10 +217,22 @@ function widgetController() {
 	 * This can be useful for something.
 	 */
 	function drawCircle() {
+		var circleRadius = 50;
+		var circleStartAngle = 0;
+		var circleEndAngle = 2 * Math.PI;
+	
+		// Draws the circle.
 		context.beginPath();
-		context.arc(xPosition, yPosition, 50, 0, 2 * Math.PI);
+		context.arc(xPosition, yPosition, circleRadius, circleStartAngle, circleEndAngle);
 		context.stroke();
 		
+		// Adds the circle object into the array.
+		objectArray.push({arrayObject: "circle" + objectCounter, xPos: xPosition,
+			yPos: yPosition, sAngle: circleStartAngle, eAngle: circleEndAngle});
+		
+		// Notify console for testing.
+		objectArrayNotification();
+		// Disables the selected widget to prevent spam.
 		widgetSelected = null;
 	}
 
@@ -206,7 +240,7 @@ function widgetController() {
 	 * Draws the text that the user inputs
 	 * @param x X-Position of the mouse to be placed on the canvas.
 	 * @param y Y-Positition of the mouse to be placed on the canvas.
-	*/
+	 */
 	function drawText(x,y) {
 
 		var input = prompt("Enter text below", "Here...");
@@ -217,14 +251,27 @@ function widgetController() {
 		widgetSelected = null;
 	}
 }
-
 	
 /**
  * Clears the canvas board.
  */
 function clearCanvas() {
-    var canvas = document.getElementById("myCanvas");
-    var context = canvas.getContext("2d");
-
+	// Clears the canvas.
     context.clearRect(0, 0, canvas.width, canvas.height);
+	// Calls the function to remove all the objects on the array.
+	clearArray();
+}
+
+/**
+ * Clears and rests the array.
+ */
+function clearArray() {
+	// Displays how many objects are deleted.
+	console.log("Deleted " + objectArray.length + " objects!");
+	// Nullifies the array
+	objectArray = null;
+	// Redeclare the array.
+	objectArray = [];
+	// Reset the counter.
+	objectCounter = 0;
 }

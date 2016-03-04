@@ -70,12 +70,12 @@
 		<button type="button" class="btn btn-default" onClick="setDrawingMode(1)">Circle</button>
 		<button type="button" class="btn btn-default" onClick="setDrawingMode(2)">Text</button>
 		<button type="button" class="btn btn-default" onClick="setDrawingMode(3)">Image</button>
-		<button type="button" class="btn btn-default" onClick="drawWidget()">5</button>
-		<button type="button" class="btn btn-default" onClick="drawWidget()">6</button>
-		<button type="button" class="btn btn-default" onClick="drawWidget()">7</button>
-		<button type="button" class="btn btn-default" onClick="drawWidget()">8</button>
-		<button type="button" class="btn btn-default" onClick="drawWidget()">9</button>
-		<button type="button" class="btn btn-default" onClick="drawWidget()">10</button>
+		<button type="button" class="btn btn-default" onClick="setDrawingMode(4)">5</button>
+		<button type="button" class="btn btn-default" onClick="setDrawingMode(5)">6</button>
+		<button type="button" class="btn btn-default" onClick="setDrawingMode()">7</button>
+		<button type="button" class="btn btn-default" onClick="setDrawingMode()">8</button>
+		<button type="button" class="btn btn-default" onClick="setDrawingMode()">9</button>
+		<button type="button" class="btn btn-default" onClick="setDrawingMode()">10</button>
 	</div>
 	<!-- Clickable title that collapses in when clicked. -->
 	<legend  data-toggle="collapse" data-target="#widgetSettings">Widget Settings</legend>
@@ -133,7 +133,7 @@
 
 <!--Canvas for drawing on.-->
 <div id="canvasContainer">
-	<canvas id="myCanvas" width="720" height="650" style="border: 1px black solid">
+	<canvas id="myCanvas" width="650" height="650" style="border: 1px black solid">
 		This text is displayed if your browser does not support HTML5 Canvas.
 	</canvas>
 	<!-- Coordinates for the mouse movement on the canvas for knowledge. -->
