@@ -9,4 +9,4 @@ These are the settings for connecting to the DB
 	$username = "root";
 	$password = "rnd2016";
 	$database = "mobileprototyper";
-	
+?>	
