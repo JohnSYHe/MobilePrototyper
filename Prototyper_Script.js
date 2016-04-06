@@ -146,13 +146,14 @@ function widgetController() {
 				}
 			}
 		}
+		
 	} else if (widgetSelection == 0) {
 		createSquare.prototype.draw = function(context) {
 		context.fillRect(this.x, this.y, this.width, this.height);
 		// Parameters explanation for the rectangle: (X-Position, Y-Position, width, height			
 		}
 		 createdWidget = new createSquare();	
-		//createWidget();
+		
 	} else if (widgetSelection == 1) {
 		createCircle.prototype.draw = function(context) {
 		context.beginPath();
@@ -160,24 +161,65 @@ function widgetController() {
 		context.stroke();			
 		// Parameters explanation for the circle: (x-position, y-position, radius, starting angle, ending angle)
 		}
-		 createdWidget = new createCircle();		
+		 createdWidget = new createCircle();	
+		 
 	} else if (widgetSelection == 2) {
-		drawText(xPosition, yPosition);
+	
+		createdWidget = new createText();
+		var input = prompt("Enter text below", "Here...");
+		createdWidget.textField = input;
+		
+		createText.prototype.draw = function(context) {
+			context.font = "20px Arial";
+			context.fillText(this.textField, this.x, this.y);
+		}
+
+		
+	} else if (widgetSelection == 3) {	
+	
+		createdWidget = new createLine();		
+		createdWidget.xStart = xPosition;
+		createdWidget.yStart = yPosition;
+		
+		function endLine(){			
+			createdWidget.xEnd = xPosition;
+			createdWidget.yEnd = yPosition;
+			canvas.removeEventListener('click', endLine);			
+		}
+		
+		canvas.addEventListener('click', endLine);
+			
+		createLine.prototype.draw = function(context) {		
+			context.beginPath();
+			context.moveTo(this.xStart, this.yStart);
+			context.lineTo(this.xEnd, this.yEnd);
+			context.stroke();
+		}
+		
 	}
+
+		else if (widgetSelection == 7){
+		//Select widget code
+		//Code to loop through the array and check all objects and if any co-ordinates match, if they do
+		//set that objects 'select' field to true.
+		//LOTS OF CODE HERE
+		//Each object has an xPos and a yPos as well as a length. if we go xpos + length as well as ypos + length when we loop
+		//through the array, if any objects area matches the mouse position, set its 'selected' field to true.
+		//for(i = 0, i <= widgetarray.length, i++)
+			//if (mouseposition == shape area <somehow>){
+				//selected = true;
+				//i = widgetarraylength
+			//}
+			//i++;
+			
+		
+		//If object is selected, the widget settings form should receive all values from the selected object
+		//Changing any values then updates the object and puts it back into the array
+		}
+				
 	
-	// function createWidget() {
-		// createdWidget.draw(context);			
-		// createdWidget.name = "Button " + counter;
-		// counter++;
-		// widgetArray.push(createdWidget);
-		// console.log(widgetArray[counter]);
-	// }
 	
-	// function insertedWidget() {
-		// console.log("Drew: " + widgetArray);
-	// }
-	
-	// If createdWidget is not null, create the widget and add it to the array.
+
 	if (createdWidget != null) {	
 		for (i = 0; i <= widgetArray.length; i++){
 			createdWidget.draw(context);			
@@ -222,12 +264,27 @@ function widgetController() {
 	 * @param x X-Position of the mouse to be placed on the canvas.
 	 * @param y Y-Positition of the mouse to be placed on the canvas.
 	*/
-	function drawText(x,y) {
-		var input = prompt("Enter text below", "Here...");
-		context.font = "20px Arial";
-		context.fillText(input, x, y);
-		widgetSelection = null;
+	function createText() {
+		
+		this.name = name || 'undefined';
+		this.textField = input || 'undefined';
+		this.x = xPosition || 0;
+		this.y = yPosition || 0;
+		
+
 	}
+	
+	function createLine(){
+	
+		this.name = name || 'undefined'
+		this.xStart = 0;
+		this.yStart = 0;
+		this.xEnd = 20;
+		this.yEnd = 20;
+		
+	}
+	
+
 }
 
 /**
@@ -239,7 +296,7 @@ function clearCanvas() {
 	// Informs developer how much objects were deleted.
 	console.log("Deleted: " + (counter - 1) + " widgets!");
 	// Call clearWidgetArray() to remove everything from the array when clearing canvas.
-	clearWidgetArray();
+	//clearWidgetArray();
 }
 
 /**
