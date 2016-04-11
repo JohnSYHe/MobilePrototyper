@@ -64,24 +64,24 @@
 <!-- Container for the sidebar -->
 <div id="appSideBar">
 	<!-- Clickable legend that collapses in when clicked. -->
-	<legend data-toggle="collapse" data-target="#radioContainer">Widgets</legend>
-	<div id="radioContainer" class="Collapse in">
-		<button type="button" class="btn btn-default" onClick="setDrawingMode(0)">Square</button>
-		<button type="button" class="btn btn-default" onClick="setDrawingMode(1)">Circle</button>
-		<button type="button" class="btn btn-default" onClick="setDrawingMode(2)">Text</button>
-		<button type="button" class="btn btn-default" onClick="setDrawingMode(3)">Line</button>
-		<button type="button" class="btn btn-default" onClick="drawWidgetArray()">Draw</button>
-		<button type="button" class="btn btn-default" onClick="clearWidgetArray()">Clear</button>
+	<legend id="#radioContainer">Widgets</legend>
+	<div id="buttonContainer">
+		<button type="button" class="btn btn-default" onClick="setDrawingMode('Square')">Square</button>
+		<button type="button" class="btn btn-default" onClick="setDrawingMode('Circle')">Circle</button>
+		<button type="button" class="btn btn-default" onClick="setDrawingMode('Text')">Text</button>
+		<button type="button" class="btn btn-default" onClick="setDrawingMode('Line')">Line</button>
+		<button type="button" class="btn btn-default" onClick="drawWidgetArray()">Show</button>
+		<button type="button" class="btn btn-default" onClick="drawWidget()">6</button>
 		<button type="button" class="btn btn-default" onClick="drawWidget()">7</button>
 		<button type="button" class="btn btn-default" onClick="drawWidget()">8</button>
-		<button type="button" class="btn btn-default" onClick="drawWidget()">9</button>
-		<button type="button" class="btn btn-default" onClick="drawWidget()">10</button>
+		<button type="button" class="btn btn-default" onClick="printArray()">Array</button>
+		<button type="button" class="btn btn-default" onClick="hideWidgetArray()">Hide</button>
 	</div>
 	<!-- Clickable title that collapses in when clicked. -->
-	<legend  data-toggle="collapse" data-target="#widgetSettings">Widget Settings</legend>
-	<form id="widgetSettings" class="form-inline Collapse in">
+	<legend id="#widgetSettings">Widget Settings</legend>
+	<form id="widgetSettings" class="form-inline">
 		<div class="form-group">
-			<label for="widgID">Widget ID:</label>
+			<label for="widgID">ID:</label>
 			<input type="text" class="form-control" id="widgID" placeholder="Widget Name">
 		</div>
 		<!-- Widget Resizing section. -->
@@ -133,7 +133,7 @@
 
 <!--Canvas for drawing on.-->
 <div id="canvasContainer">
-	<canvas id="myCanvas" width="720" height="650" style="border: 1px black solid">
+	<canvas id="myCanvas" width="425" height="425" style="border: 1px black solid">
 		This text is displayed if your browser does not support HTML5 Canvas.
 	</canvas>
 	<!-- Coordinates for the mouse movement on the canvas for knowledge. -->
