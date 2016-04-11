@@ -20,8 +20,10 @@ var hideWidgets = false;
 var insertedNum = 0;
 
 var createdWidget;
-
+// For text input.
 var input = "";
+// For movement of widgets and free-draw.
+var dragging = false;
 
 /**
  * Initialise everything for canvas and context.
@@ -113,7 +115,6 @@ function setDrawingMode(btnValue) {
 	console.log(btnValue + " has been selected!");
 }
 
-
 /**
  * Prints inserted widget into console.
  */
@@ -140,8 +141,6 @@ function printArray() {
 	console.log("Total widgets in array: " + widgetArray.length);
 }
 
-
-
 /**
  * Function for when the mouse button is held down.
  */
@@ -152,6 +151,8 @@ function mouseDown() {
 	
 	if (widgetSelected == null) {
 		console.log("No widget selected!");
+		
+		clickedWidget();
 	} else if (widgetSelected == "Square") {
 		drawSquare();
 	} else if (widgetSelected == "Circle") {
@@ -159,6 +160,23 @@ function mouseDown() {
 	}
 
 }
+
+/**
+ * Function for click detection. For selection/movement
+ */
+function clickedWidget() {
+	
+	for (i = 0; i < widgetArray.length; i++) {
+		if (xPosition > widgetArray[i].x 
+		&& xPosition < (widgetArray[i].x + widgetArray[i].width)) {
+			if (yPosition > widgetArray[i].y 
+				&& yPosition < (widgetArray[i].y + widgetArray[i].height)) {
+					console.log("clicked");
+			}
+		}
+	}
+}
+
 
 /**
  * Function for when the mouse button is released.
@@ -185,7 +203,7 @@ function mouseUp() {
  */
 function drawSquare() {
 	createSquare.prototype.draw = function(context) {
-		context.fillRect(this.x - 50, this.y - 50, this.width, this.height);
+		context.fillRect(this.x, this.y, this.width, this.height);
 		// Parameters explanation for the rectangle: (X-Position, Y-Position, width, height			
 	}
 	createdWidget = new createSquare();
@@ -220,9 +238,11 @@ function drawText() {
 	}
 }
 
+/**
+ * Create the Line object from the prototype.
+ */
 function drawLineWidget() {
-	
-	createdWidget = new createLine();		
+	createdWidget = new createLine();
 	createdWidget.xStart = xStart;
 	createdWidget.yStart = yStart;
 	
@@ -329,22 +349,17 @@ function clearWidgetArray(){
  * Draws all the widgets in the array.
  */
 function drawWidgetArray(){
-	if (hideWidgets == true) {
-		// Loop that draws the objects in the array one by one.
-		for (i = 0; i < widgetArray.length; i++) {
-			if (i == 0) {
-				console.log("Showing widgets... " + widgetArray.length + " found!");
-			}
-			widgetArray[i].draw(context);
-			console.log("->Re-drew widget: " + i + " " + widgetArray[i].name);
+	// Loop that draws the objects in the array one by one.
+	for (i = 0; i < widgetArray.length; i++) {
+		if (i == 0) {
+			console.log("Showing widgets... " + widgetArray.length + " found!");
 		}
-		// Lets developer know that nothing is in the array.
-		if (widgetArray.length == 0) {
-			console.log("There's nothing to show!");
-		}
-		hideWidgets = false;
-	} else if (hideWidgets == false) {
-		console.log("No widgets are hidden!");
+		widgetArray[i].draw(context);
+		console.log("->Re-drew widget: " + i + " " + widgetArray[i].name);
+	}
+	// Lets developer know that nothing is in the array.
+	if (widgetArray.length == 0) {
+		console.log("There's nothing to show!");
 	}
 }
 
@@ -352,14 +367,15 @@ function drawWidgetArray(){
  * Hides all the widgets in the array.
  */
 function hideWidgetArray() {
-	if (hideWidgets == true) {
-		console.log("Widgets are already hidden!");
-	} else if (hideWidgets == false) {
+
+	
+	if (widgetArray.length == 0) {
+		console.log("There's nothing to hide!");
+	} else {
 		// Cleans out canvas.
 		context.clearRect(0, 0, canvas.width, canvas.height);
 		// Logs how many widgets were hidden.
 		console.log("Hiding widgets... " + widgetArray.length + " hidden!");
-		hideWidgets = true;
 	}
 }
 
