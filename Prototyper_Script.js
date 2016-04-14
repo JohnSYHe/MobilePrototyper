@@ -198,6 +198,11 @@ function mouseUp() {
 	}
 }
 
+// function createWidgetSettings(passedInWidget) {
+// 	
+// 	document.getElementById('widgID').value = passedInWidget.name;
+// }
+
 /**
  * Create the Square object from the prototype.
  */
