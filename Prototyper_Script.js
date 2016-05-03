@@ -90,6 +90,7 @@ function positionManager(event) {
 	
 	// Sends the message to be displayed.
 	displayCoordinates(mouseCoordinates);
+
 }
 
 /**
@@ -150,31 +151,67 @@ function mouseDown() {
 	yStart = yPosition;
 	
 	if (widgetSelected == null) {
-		console.log("No widget selected!");
 		
 		clickedWidget();
 	} else if (widgetSelected == "Square") {
 		drawSquare();
 	} else if (widgetSelected == "Circle") {
 		drawCircle();
+	} else if (widgetSelected == "FreeDraw") {
+		freeDraw();
 	}
 
 }
 
+function freeDraw() {
+	
+}
 /**
  * Function for click detection. For selection/movement
  */
-function clickedWidget() {
-	
+function clickedWidget() {	
+
+var widgetFound = false;
+
 	for (i = 0; i < widgetArray.length; i++) {
-		if (xPosition > widgetArray[i].x 
-		&& xPosition < (widgetArray[i].x + widgetArray[i].width)) {
-			if (yPosition > widgetArray[i].y 
-				&& yPosition < (widgetArray[i].y + widgetArray[i].height)) {
-					console.log("clicked");
-			}
-		}
+		if (xPosition > widgetArray[i].x && xPosition < (widgetArray[i].x + widgetArray[i].width)) {
+			if (yPosition > widgetArray[i].y && yPosition < (widgetArray[i].y + widgetArray[i].height)) {
+				
+				console.log("Clicked: " + widgetArray[i].name);
+				createWidgetSettings(widgetArray[i]);
+				
+				for (j = 0; j < widgetArray.length; j++){
+						widgetArray[j].selected = false;						
+				}
+				
+				widgetArray[i].selected = true;								
+				widgetFound = true;
+				drawWidgetArray();	
+				var removed = widgetArray.splice(widgetArray[i], 1);
+				widgetArray.push(removed[0]);				
+				i = widgetArray.length;	
+				
+				}
+							
+		} 
+	}	
+	
+	if(widgetFound == false){
+	
+		console.log("Nothing");		
+			for (j = 0; j < widgetArray.length; j++){
+					widgetArray[j].selected = false;
+				}				
+		drawWidgetArray();	
 	}
+
+}
+
+
+//The passed in variable name needs more thought
+function createWidgetSettings(passedInWidget) {
+	
+	document.getElementById('widgID').value = passedInWidget.name;
 }
 
 
@@ -198,18 +235,27 @@ function mouseUp() {
 	}
 }
 
-// function createWidgetSettings(passedInWidget) {
-// 	
-// 	document.getElementById('widgID').value = passedInWidget.name;
-// }
-
 /**
  * Create the Square object from the prototype.
  */
 function drawSquare() {
 	createSquare.prototype.draw = function(context) {
-		context.fillRect(this.x, this.y, this.width, this.height);
-		// Parameters explanation for the rectangle: (X-Position, Y-Position, width, height			
+		if(this.selected == true){
+			context.strokeStyle = 'red';
+			context.lineWidth = 2;
+			context.beginPath();
+			context.rect(this.x - 3, this.y - 3, this.width + 6, this.height + 6);
+			context.stroke();
+		}
+		
+		context.strokeStyle = 'black';
+		context.lineWidth = 1;
+		context.beginPath();
+		context.rect(this.x, this.y, this.width, this.height);
+		context.stroke();
+		//context.fillRect(this.x, this.y, this.width, this.height);
+		// Parameters explanation for the rectangle: (X-Position, Y-Position, width, height
+				
 	}
 	createdWidget = new createSquare();
 }
@@ -218,9 +264,23 @@ function drawSquare() {
  * Create the Circle object from the prototype.
  */
 function drawCircle() {
+
+		
 	createCircle.prototype.draw = function(context) {
-		context.beginPath();
-		context.arc(this.x, this.y, this.rad, 0, 2 * Math.PI);
+		
+		if(this.selected == true){
+			
+			context.strokeStyle = 'red';
+			context.lineWidth = 2;
+			context.beginPath();
+			context.rect(this.x - 3, this.y - 3, this.width + 6, this.height + 6);
+			context.stroke();
+		}
+		
+		context.strokeStyle = 'black';
+		context.lineWidth = 1;
+		context.beginPath();		
+		context.arc(this.x + 50, this.y + 50, this.rad, 0, 2 * Math.PI);
 		context.stroke();
 		// Parameters explanation for the circle: (x-position, y-position, radius, starting angle, ending angle)
 	}
@@ -284,8 +344,9 @@ function drawWidget() {
  */
 function createSquare() {
 	this.name = name;
-	this.x = xPosition;
-	this.y = yPosition;
+	this.selected = false;
+	this.x = xPosition - 50;
+	this.y = yPosition - 50;
 	this.width = 100;
 	this.height = 100;
 }
@@ -295,9 +356,12 @@ function createSquare() {
  */
 function createCircle() {
 	this.name = name;
-	this.x = xPosition;
-	this.y = yPosition;
+	this.selected = false;
+	this.x = xPosition - 50;
+	this.y = yPosition - 50;
 	this.rad = 50; //Default size 50? needs reconsidering when changing size is implemented
+	this.width = 100;
+	this.height = 100;
 }
 
 /**
@@ -354,17 +418,25 @@ function clearWidgetArray(){
  * Draws all the widgets in the array.
  */
 function drawWidgetArray(){
+	context.clearRect(0, 0, canvas.width, canvas.height);
 	// Loop that draws the objects in the array one by one.
 	for (i = 0; i < widgetArray.length; i++) {
 		if (i == 0) {
-			console.log("Showing widgets... " + widgetArray.length + " found!");
+			//console.log("Showing widgets... " + widgetArray.length + " found!");
 		}
 		widgetArray[i].draw(context);
-		console.log("->Re-drew widget: " + i + " " + widgetArray[i].name);
+		//console.log("->Re-drew widget: " + i + " " + widgetArray[i].name);
 	}
 	// Lets developer know that nothing is in the array.
 	if (widgetArray.length == 0) {
 		console.log("There's nothing to show!");
+	}
+}
+
+// Temp fuction to loop through the array setting all widget's 'selected' to false
+function setAllWidgetsFalse(){
+	for (i = 0; i < widgetArray.length; i++) {
+		widgetArray[i].selected = false;
 	}
 }
 
