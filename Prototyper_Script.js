@@ -224,12 +224,18 @@ function clickedWidget() {
 				
 				console.log("Clicked: " + widgetArray[i].name);
 				createWidgetSettings(widgetArray[i]);
-				for (j = 0; j < widgetArray.length; j++){
+				
+					for (j = 0; j < widgetArray.length; j++){
 						widgetArray[j].selected = false;
-				} 
+					} 
+				
+				widgetArray[i].selected = true;
+				
 				activeWidget = widgetArray[i];
-				widgetArray[i].selected = true;					
-				drawWidgetArray();						
+				widgetArray.splice(i, 1);
+				widgetArray.unshift(activeWidget);
+				drawWidgetArray();
+				
 				i = widgetArray.length;	
 				widgetFound = true;
 			}
@@ -352,7 +358,7 @@ function drawWidget() {
 	createdWidget.draw(context);
 	createdWidget.name = "Widget " + (widgetArray.length + 1);
 	// Push/add the widget into the array.
-	widgetArray.push(createdWidget);
+	widgetArray.unshift(createdWidget);
 	// Prints inserted widget into console.
 	insertedWidget();
 	// Disable multiple widget usage from 1 click.
