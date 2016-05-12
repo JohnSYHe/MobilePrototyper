@@ -8,9 +8,12 @@ var yStart = 0;
 // Mouseup Position
 var xEnd = 0;
 var yEnd = 0;
-
-// Global variable for which widget is selected.
+// Offset for objects.
+var objOffset = 50;
+// Global variable for which widget is selected for drawing.
 var widgetSelected = null;
+// Global variable for which widget is selected for manipulation.
+var activeWidget = null;
 
 // Array to store the widgets.
 var widgetArray = [];
@@ -77,7 +80,7 @@ function getMousePosition(canvas, event) {
 }	
 
 /**
- * 
+ * Manages the position of the mouse.
  * @param event 
  */
 function positionManager(event) {
@@ -91,13 +94,7 @@ function positionManager(event) {
 	// Sends the message to be displayed.
 	displayCoordinates(mouseCoordinates);
 	
-	if (dragging == true && activeWidget != null) {
-	
-		activeWidget.x = xPosition - 50;
-		activeWidget.y = yPosition - 50;
-	
-		drawWidgetArray();
-	}
+	moveWidget();
 }
 
 /**
@@ -149,19 +146,15 @@ function printArray() {
 	console.log("Total widgets in array: " + widgetArray.length);
 }
 
-var activeWidget = null;
-
 /**
  * Function for when the mouse button is held down.
  */
 function mouseDown(event) {
-	
 	xStart = xPosition;
 	yStart = yPosition;
 	
 	if (widgetSelected == null) {
 		clickedWidget();
-		
 	} else if (widgetSelected == "Square") {
 		drawSquare();
 	} else if (widgetSelected == "Circle") {
@@ -169,51 +162,49 @@ function mouseDown(event) {
 	} else if (widgetSelected == "FreeDraw") {
 		freeDraw();
 	}
-
+	// Sets dragging to true when mouse is down.
 	dragging = true;
 	
-	if (widgetSelected == null && activeWidget != null) {
-		console.log("MouseDown");
-
-		console.log(dragging);
-
-	}
 }
 
 /**
  * Function for when the mouse button is released.
  */
 function mouseUp(event) {
-	
+	// Stores mouse up positions from where it was released.
 	xEnd = xPosition;
 	yEnd = yPosition;
-	
+	// Sets dragging to false when mouse button is released.
 	dragging = false;
-	
-	if (widgetSelected == null && activeWidget != null) {
-		
-		activeWidget.x = xPosition - 50;
-		activeWidget.y = yPosition - 50;
-	
-		drawWidgetArray();
 
-	}
-	
 	if (widgetSelected == "Line") {
 		drawLineWidget();
 	} else if (widgetSelected == "Text") {
 		drawText();
 	}
-	
-		// Pushes the widget into the array.
+	// Pushes the widget into the array.
 	if (createdWidget != null ) {
 		drawWidget();
 	}
 }
 
+/**
+ * Function to move the widget when selected.
+ */
+function moveWidget() {
+	if (dragging == true && activeWidget != null) {
+
+		activeWidget.x = xPosition - objOffset;
+		activeWidget.y = yPosition - objOffset;
+
+		moveDrawWidgetArray();
+		createWidgetSettings(activeWidget);
+	}
+}
+
 
 /**
- * Function for click detection. For selection/movement
+ * Function for click detection. For selection/movement.
  */
 function clickedWidget() {	
 	var widgetFound = false;
@@ -224,44 +215,46 @@ function clickedWidget() {
 				
 				console.log("Clicked: " + widgetArray[i].name);
 				createWidgetSettings(widgetArray[i]);
-				
-					for (j = 0; j < widgetArray.length; j++){
+				for (j = 0; j < widgetArray.length; j++){
 						widgetArray[j].selected = false;
-					} 
-				
-				widgetArray[i].selected = true;
-				
+				} 
 				activeWidget = widgetArray[i];
+				widgetArray[i].selected = true;	
+
 				widgetArray.splice(i, 1);
 				widgetArray.unshift(activeWidget);
-				drawWidgetArray();
 				
+				moveDrawWidgetArray();					
 				i = widgetArray.length;	
 				widgetFound = true;
+				document.getElementById("widgetSettings").style.visibility = "visible";
 			}
-		} 
+		}
 	}
-	
 
-	
-	
-	
 	if (widgetFound == false){
 	
 		console.log("Nothing");		
-			for (j = 0; j < widgetArray.length; j++){
-					widgetArray[j].selected = false;
-				}				
-		drawWidgetArray();
+		for (j = 0; j < widgetArray.length; j++){
+				widgetArray[j].selected = false;
+		}				
+		moveDrawWidgetArray();
 		
 		activeWidget = null;
+		document.getElementById("widgetSettings").style.visibility = 'hidden';
 	}
-
 }
 
 //The passed in variable name needs more thought
+/**
+ * Passes and updates the settings form.
+ */
 function createWidgetSettings(passedInWidget) {
-	document.getElementById('widgID').value = passedInWidget.name;
+	document.getElementById("widgIDInput").value = passedInWidget.name;
+	document.getElementById("widgHeightInput").value = passedInWidget.height;
+	document.getElementById("widgWidthInput").value = passedInWidget.width;
+	document.getElementById("widgXPosInput").value = passedInWidget.x + objOffset;
+	document.getElementById("widgYPosInput").value = passedInWidget.y + objOffset;
 }
 
 /**
@@ -309,7 +302,7 @@ function drawCircle() {
 		context.strokeStyle = 'black';
 		context.lineWidth = 1;
 		context.beginPath();		
-		context.arc(this.x + 50, this.y + 50, this.rad, 0, 2 * Math.PI);
+		context.arc(this.x + objOffset, this.y + objOffset, this.rad, 0, 2 * Math.PI);
 		context.stroke();
 		// Parameters explanation for the circle: (x-position, y-position, radius, starting angle, ending angle)
 	}
@@ -358,7 +351,7 @@ function drawWidget() {
 	createdWidget.draw(context);
 	createdWidget.name = "Widget " + (widgetArray.length + 1);
 	// Push/add the widget into the array.
-	widgetArray.unshift(createdWidget);
+	widgetArray.push(createdWidget);
 	// Prints inserted widget into console.
 	insertedWidget();
 	// Disable multiple widget usage from 1 click.
@@ -374,8 +367,8 @@ function drawWidget() {
 function createSquare() {
 	this.name = name;
 	this.selected = false;
-	this.x = xPosition - 50;
-	this.y = yPosition - 50;
+	this.x = xPosition - objOffset;
+	this.y = yPosition - objOffset;
 	this.width = 100;
 	this.height = 100;
 }
@@ -386,8 +379,8 @@ function createSquare() {
 function createCircle() {
 	this.name = name;
 	this.selected = false;
-	this.x = xPosition - 50;
-	this.y = yPosition - 50;
+	this.x = xPosition - objOffset;
+	this.y = yPosition - objOffset;
 	this.rad = 50; //Default size 50? needs reconsidering when changing size is implemented
 	this.width = 100;
 	this.height = 100;
@@ -462,6 +455,13 @@ function drawWidgetArray(){
 	}
 }
 
+function moveDrawWidgetArray() {
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	for (i = 0; i < widgetArray.length; i++) {
+		widgetArray[i].draw(context);
+	}
+}
+
 // Temp fuction to loop through the array setting all widget's 'selected' to false
 function setAllWidgetsFalse(){
 	for (i = 0; i < widgetArray.length; i++) {
@@ -473,7 +473,6 @@ function setAllWidgetsFalse(){
  * Hides all the widgets in the array.
  */
 function hideWidgetArray() {
-
 	
 	if (widgetArray.length == 0) {
 		console.log("There's nothing to hide!");
