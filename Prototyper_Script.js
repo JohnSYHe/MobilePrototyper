@@ -14,10 +14,9 @@ var objOffset = 50;
 var widgetSelected = null;
 // Global variable for which widget is selected for manipulation.
 var activeWidget = null;
-
 // Array to store the widgets.
 var widgetArray = [];
-
+// Boolean to confirm the visibility of widgets.
 var hideWidgets = false;
 // Counter for the insertedWidget(); function
 var insertedNum = 0;
@@ -50,14 +49,18 @@ function init() {
         return;
     }
     // Starts the mouse controller to enable the event listeners for user interaction.
-    mouseController();
+    mainController();
 }
 
 /**
  * Controller for the mouse events.
  * @param canvas
  */
-function mouseController() {
+function mainController() {
+	document.getElementById("widgIDInput").addEventListener("input", widgeName);
+	document.getElementById("widgComment").addEventListener("input", widgeComment);
+	document.getElementById("widgHeightInput").addEventListener("input", widgeHeight);
+	document.getElementById("widgWidthInput").addEventListener("input", widgeWidth);
 	// Event Listeners for the mouse.
 	canvas.addEventListener("mousemove", positionManager);
 	canvas.addEventListener("mouseout", hideCoordinates);
@@ -86,7 +89,7 @@ function getMousePosition(canvas, event) {
 function positionManager(event) {
 	var mousePos = getMousePosition(canvas, event);
 	// Formats a message that shows the coordinates.
-	var mouseCoordinates = 'Coordinates: ' + mousePos.x + ',' + mousePos.y;
+	var mouseCoordinates = 'Coordinates: ' + mousePos.x + ', ' + mousePos.y;
 	
 	xPosition = mousePos.x;
 	yPosition = mousePos.y;
@@ -164,7 +167,6 @@ function mouseDown(event) {
 	}
 	// Sets dragging to true when mouse is down.
 	dragging = true;
-	
 }
 
 /**
@@ -193,10 +195,10 @@ function mouseUp(event) {
  */
 function moveWidget() {
 	if (dragging == true && activeWidget != null) {
-
+		
 		activeWidget.x = xPosition - objOffset;
 		activeWidget.y = yPosition - objOffset;
-
+	
 		moveDrawWidgetArray();
 		createWidgetSettings(activeWidget);
 	}
@@ -216,7 +218,7 @@ function clickedWidget() {
 				console.log("Clicked: " + widgetArray[i].name);
 				createWidgetSettings(widgetArray[i]);
 				for (j = 0; j < widgetArray.length; j++){
-						widgetArray[j].selected = false;
+					widgetArray[j].selected = false;
 				} 
 				activeWidget = widgetArray[i];
 				widgetArray[i].selected = true;	
@@ -233,28 +235,70 @@ function clickedWidget() {
 	}
 
 	if (widgetFound == false){
-	
 		console.log("Nothing");		
 		for (j = 0; j < widgetArray.length; j++){
 				widgetArray[j].selected = false;
-		}				
+		}
 		moveDrawWidgetArray();
 		
 		activeWidget = null;
+		// Hides the widget settings when a widget is deselected.
 		document.getElementById("widgetSettings").style.visibility = 'hidden';
+	}
+}
+
+/**
+ * The name setting of the widget.
+ */
+function widgeName() {
+	var name = document.getElementById("widgIDInput").value;
+	if (activeWidget != null) {
+		activeWidget.name = name;
+	}
+}
+
+/**
+ * The comment setting of the widget.
+ */
+function widgeComment() {
+	var comment = document.getElementById("widgComment").value;
+	if (activeWidget != null) {
+		activeWidget.comment = comment;
+	}
+}
+
+/**
+ * The height setting of the widget.
+ */
+function widgeHeight() {
+	var height = document.getElementById("widgHeightInput").value;
+	if (activeWidget != null) {
+		activeWidget.height = height;
+		// Redraws it to reflect the changes on the canvas.
+		moveDrawWidgetArray();
+	}
+}
+
+function widgeWidth() {
+	var width = document.getElementById("widgWidthInput").value;
+	if (activeWidget != null) {
+		activeWidget.width = width;
+		// Redraws it to reflect the changes on the canvas.
+		moveDrawWidgetArray();
 	}
 }
 
 //The passed in variable name needs more thought
 /**
- * Passes and updates the settings form.
+ * Grabs the values of the objects and displays it in the settings form.
  */
 function createWidgetSettings(passedInWidget) {
 	document.getElementById("widgIDInput").value = passedInWidget.name;
 	document.getElementById("widgHeightInput").value = passedInWidget.height;
 	document.getElementById("widgWidthInput").value = passedInWidget.width;
-	document.getElementById("widgXPosInput").value = passedInWidget.x + objOffset;
-	document.getElementById("widgYPosInput").value = passedInWidget.y + objOffset;
+	document.getElementById("widgXPosInput").value = passedInWidget.x;
+	document.getElementById("widgYPosInput").value = passedInWidget.y;
+	document.getElementById("widgComment").value = passedInWidget.comment;
 }
 
 /**
@@ -269,15 +313,11 @@ function drawSquare() {
 			context.rect(this.x - 3, this.y - 3, this.width + 6, this.height + 6);
 			context.stroke();
 		}
-		
 		context.strokeStyle = 'black';
 		context.lineWidth = 1;
 		context.beginPath();
-		context.rect(this.x, this.y, this.width, this.height);
+		context.rect(this.x, this.y, this.width, this.height, this.comment);
 		context.stroke();
-		//context.fillRect(this.x, this.y, this.width, this.height);
-		// Parameters explanation for the rectangle: (X-Position, Y-Position, width, height
-				
 	}
 	createdWidget = new createSquare();
 }
@@ -286,19 +326,14 @@ function drawSquare() {
  * Create the Circle object from the prototype.
  */
 function drawCircle() {
-
-		
 	createCircle.prototype.draw = function(context) {
-		
 		if(this.selected == true){
-			
 			context.strokeStyle = "red";
 			context.lineWidth = 2;
 			context.beginPath();
 			context.rect(this.x - 3, this.y - 3, this.width + 6, this.height + 6);
 			context.stroke();
 		}
-		
 		context.strokeStyle = 'black';
 		context.lineWidth = 1;
 		context.beginPath();		
@@ -308,8 +343,6 @@ function drawCircle() {
 	}
 	 createdWidget = new createCircle();
 }
-
-
 
 /**
  * Create the Text object from the prototype.
@@ -371,6 +404,7 @@ function createSquare() {
 	this.y = yPosition - objOffset;
 	this.width = 100;
 	this.height = 100;
+	this.comment = null;
 }
 
 /**
@@ -384,6 +418,7 @@ function createCircle() {
 	this.rad = 50; //Default size 50? needs reconsidering when changing size is implemented
 	this.width = 100;
 	this.height = 100;
+	this.comment = "";
 }
 
 /**
@@ -455,6 +490,9 @@ function drawWidgetArray(){
 	}
 }
 
+/**
+ * Redraws the objects when moving them.
+ */
 function moveDrawWidgetArray() {
 	context.clearRect(0, 0, canvas.width, canvas.height);
 	for (i = 0; i < widgetArray.length; i++) {

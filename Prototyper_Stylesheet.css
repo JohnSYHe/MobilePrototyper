@@ -63,11 +63,11 @@ legend {
 }
 
 #widgetSettings #widgHeightInput {
-	width: 100px;
+	width: 85px;
 }
 
 #widgetSettings #widgWidthInput {
-	width: 100px;
+	width: 85px;
 }
 
 #widgetSettings #widgXPosInput {
@@ -82,19 +82,9 @@ legend {
 	width: 275px;
 }
 
-#widgetSettings #widgFontStyle {
-
-}
-
-#widgetSettings #widgFontSize {
-	width: 90px;
-}
-
-#widgetSettings #widgFontColour {
-	width: 250px;
-}
-#widgetSettings #imageUpload {
-	width: 235px;
+#widgetSettings #widgComment {
+	width: 100%;
+	max-width: 100%;
 }
 
 /* Removes the collapse animation. */

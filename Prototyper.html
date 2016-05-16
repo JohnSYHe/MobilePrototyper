@@ -85,7 +85,7 @@
 			<input type="text" class="form-control" id="widgIDInput" placeholder="Widget Name">
 		</div>
 		<!-- Widget Resizing section. -->
-		<div class="form-group">
+		<div>
 			<!-- Height section. -->
 			<label for="widgHeight">Height:</label>
 			<input type="number" class="form-control" id="widgHeightInput" placeholder="100px">
@@ -93,7 +93,7 @@
 			<label for="widgWidth">Width:</label>
 			<input type="number" class="form-control" id="widgWidthInput" placeholder="100px">
 		</div>
-		<div class="form-group">
+		<div>
 			<!-- Widget X-Position -->
 			<label for="widgXPos">X-Position:</label>
 			<input type="number" class="form-control" id="widgXPosInput">
@@ -102,39 +102,15 @@
 			<input type="number" class="form-control" id="widgYPosInput">
 		</div>
 		<!-- Widget Colour section. -->
-		<div class="form-group">
+		<div>
 			<label for="widgColour">Colour:</label>
 			<input type="text" class="form-control" id="widgColour" placeholder="#012345678">
 		</div>
-		<!-- Widget Font section. -->
-		<div class="form-group">
-			<!-- Widget Font Style section. -->
-			<label for="widgFontStyle">Font Style:</label>
-			<select class="form-control" id="widgFontStyle">
-				<option value="1">Font 1</option>
-				<option value="2">Font 2</option>
-				<option value="3">Font 3</option>
-				<option value="4">Font 4</option>
-			</select>
-			<!-- Widget Font Size section. -->
-			<label for="widgFontSize">Font Size:</label>
-			<select class="form-control" id="widgFontSize">
-				<option value="1">8</option>
-				<option value="2">10</option>
-				<option value="3">12</option>
-				<option value="4">14</option>
-				<option value="5">16</option>
-			</select>
-		</div>
-		<!-- Widget Font Colour section. -->
-		<div class="form-group">
-			<label for="widgFontColour">Font Colour:</label>
-			<input type="text" class="form-control" id="widgFontColour" placeholder="#012345678">
-		</div>
-		<!-- Widget File Insertion section. -->
-		<div class="form-group">
-			<label for="imageUpload">Custom Image:</label>
-			<input id="imageUpload" class="form-control" type="file">
+		<!-- Widget Comment section. -->
+		<div>
+			<label>Comment:</label>
+			<br />
+			<textarea type="text" class="form-control" id="widgComment" placeholder="Comments Here"></textarea>
 		</div>
 	</form>
 </div>
@@ -145,7 +121,7 @@
 		This text is displayed if your browser does not support HTML5 Canvas.
 	</canvas>
 	<!-- Coordinates for the mouse movement on the canvas for knowledge. -->
-	<p>Mouse over the rectangle above to get the horizontal and vertical coordinates of your mouse pointer.</p>
+	<p>Mouse over the canvas above to get the coordinates of your mouse pointer.</p>
 	<p id="mCoordinates"></p>
 	<!-- Coordinates for the mouse movement on the canvas for knowledge. -->
 </div>
