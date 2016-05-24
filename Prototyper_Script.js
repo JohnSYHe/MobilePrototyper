@@ -57,10 +57,12 @@ function init() {
  * @param canvas
  */
 function mainController() {
-	document.getElementById("widgIDInput").addEventListener("input", widgeName);
-	document.getElementById("widgComment").addEventListener("input", widgeComment);
+	document.getElementById("widgIDInput").addEventListener("input", widgetName);
+	document.getElementById("widgComment").addEventListener("input", widgetComment);
 	document.getElementById("widgHeightInput").addEventListener("input", widgeHeight);
-	document.getElementById("widgWidthInput").addEventListener("input", widgeWidth);
+	document.getElementById("widgWidthInput").addEventListener("input", widgetWidth);
+	document.getElementById("widgXPosInput").addEventListener("input", widgetXPos);
+	document.getElementById("widgYPosInput").addEventListener("input", widgetYPos);
 	// Event Listeners for the mouse.
 	canvas.addEventListener("mousemove", positionManager);
 	canvas.addEventListener("mouseout", hideCoordinates);
@@ -96,7 +98,7 @@ function positionManager(event) {
 	
 	// Sends the message to be displayed.
 	displayCoordinates(mouseCoordinates);
-	
+
 	moveWidget();
 }
 
@@ -121,6 +123,13 @@ function hideCoordinates() {
 function setDrawingMode(btnValue) {
     widgetSelected = btnValue;
 	console.log(btnValue + " has been selected!");
+	
+	// When a widget is selected, disable the active widget and movement.
+	activeWidget = null;
+	dragging = false;
+	setAllWidgetsFalse();
+	drawWidgetArray();
+	
 }
 
 /**
@@ -129,24 +138,6 @@ function setDrawingMode(btnValue) {
 function insertedWidget() {
 	console.log(widgetArray[insertedNum]);
 	insertedNum++;
-}
-
-/**
- * Prints the array into console.
- */
-function printArray() {
-	if (widgetArray.length == 0) {
-		console.log("There doesn't seem to be anything here....");
-	} else {
-		for (i = 0; i < widgetArray.length; i++) {
-			//Test code to check whats in the widgetArray array.
-			for(i = 0; i < widgetArray.length; i++){
-				// Displays the all the widgets in the array.
-				console.log(widgetArray[i]);
-			}
-		}
-	}
-	console.log("Total widgets in array: " + widgetArray.length);
 }
 
 /**
@@ -204,7 +195,6 @@ function moveWidget() {
 	}
 }
 
-
 /**
  * Function for click detection. For selection/movement.
  */
@@ -229,7 +219,7 @@ function clickedWidget() {
 				moveDrawWidgetArray();					
 				i = widgetArray.length;	
 				widgetFound = true;
-				document.getElementById("widgetSettings").style.visibility = "visible";
+				
 			}
 		}
 	}
@@ -248,51 +238,125 @@ function clickedWidget() {
 }
 
 /**
+*Code to remove widgets from the array.
+*/
+//Using splice creates a new array, might need to consider this a memory leka if its constantly remembering
+//all the arrays we have been creating.
+function deleteWidget() {
+	for (i = 0; i < widgetArray.length; i++){
+		if(widgetArray[i].selected == true){
+			widgetArray.splice(i, 1);
+			drawWidgetArray();
+			i = widgetArray.length;
+		}				
+	}
+	updateCommentSideBar();
+}
+
+/**
  * The name setting of the widget.
  */
-function widgeName() {
-	var name = document.getElementById("widgIDInput").value;
+function widgetName() {
 	if (activeWidget != null) {
-		activeWidget.name = name;
+		activeWidget.name = document.getElementById("widgIDInput").value;
 	}
+	updateCommentSideBar();
 }
 
 /**
  * The comment setting of the widget.
  */
-function widgeComment() {
-	var comment = document.getElementById("widgComment").value;
+function widgetComment() {
 	if (activeWidget != null) {
-		activeWidget.comment = comment;
+		activeWidget.comment = document.getElementById("widgComment").value;
 	}
+	updateCommentSideBar();
+}
+
+/**
+ * Populates the Comments Sidebar for acknowledgement.
+ */
+function updateCommentSideBar() {
+	
+	// Get the comment-sidebar div to add the comments to.
+	var addComment = document.getElementById("comment-sidebar-comments");
+	// Clear everything inside the comment-sidebar.
+	addComment.innerHTML = "";
+	
+	for (i=0; i < widgetArray.length; i++) {
+		if (widgetArray[i].comment != null) {
+			// Create the text area element.
+			var txtArea = document.createElement("TEXTAREA");
+			// Set the class for CSS.
+			txtArea.setAttribute("class", "commentBox");
+			// Set the id for CSS.
+			txtArea.setAttribute("id", widgetArray[i].name);
+			// Create a text node to add into it.
+			var comment = document.createTextNode(widgetArray[i].name + ": " + widgetArray[i].comment);
+			// Add the text node into the txtarea.
+			txtArea.appendChild(comment);
+			// Prevent user from editing the textArea.
+			txtArea.disabled = true;
+			// Add the textArea into the div.
+			addComment.appendChild(txtArea);
+		}
+	}
+	
+	if (widgetArray.length == 0) {
+		addComment.innerHTML = "Add a comment to an object to populate this sidebar!";
+	}
+	
 }
 
 /**
  * The height setting of the widget.
  */
 function widgeHeight() {
-	var height = document.getElementById("widgHeightInput").value;
 	if (activeWidget != null) {
-		activeWidget.height = height;
+		activeWidget.height = parseInt(document.getElementById("widgHeightInput").value);
 		// Redraws it to reflect the changes on the canvas.
 		moveDrawWidgetArray();
 	}
 }
 
-function widgeWidth() {
-	var width = document.getElementById("widgWidthInput").value;
+/**
+ * The width setting of the widget.
+ */
+function widgetWidth() {
 	if (activeWidget != null) {
-		activeWidget.width = width;
+		activeWidget.width = parseInt(document.getElementById("widgWidthInput").value);
 		// Redraws it to reflect the changes on the canvas.
 		moveDrawWidgetArray();
 	}
 }
 
-//The passed in variable name needs more thought
+/**
+ * The X position setting of the widget.
+ */
+function widgetXPos() {
+	if (activeWidget != null) {
+		activeWidget.x = parseInt(document.getElementById("widgXPosInput").value);
+		// Redraws it to reflect the changes on the canvas.
+		moveDrawWidgetArray();
+	}
+}
+
+/**
+ * The X position setting of the widget.
+ */
+function widgetYPos() {
+	if (activeWidget != null) {
+		activeWidget.y = parseInt(document.getElementById("widgYPosInput").value);
+		// Redraws it to reflect the changes on the canvas.
+		moveDrawWidgetArray();
+	}
+}
+
 /**
  * Grabs the values of the objects and displays it in the settings form.
  */
 function createWidgetSettings(passedInWidget) {
+	document.getElementById("widgetSettings").style.visibility = "visible";
 	document.getElementById("widgIDInput").value = passedInWidget.name;
 	document.getElementById("widgHeightInput").value = passedInWidget.height;
 	document.getElementById("widgWidthInput").value = passedInWidget.width;
@@ -316,7 +380,7 @@ function drawSquare() {
 		context.strokeStyle = 'black';
 		context.lineWidth = 1;
 		context.beginPath();
-		context.rect(this.x, this.y, this.width, this.height, this.comment);
+		context.rect(this.x, this.y, this.width, this.height);
 		context.stroke();
 	}
 	createdWidget = new createSquare();
@@ -390,6 +454,7 @@ function drawWidget() {
 	// Disable multiple widget usage from 1 click.
 	widgetSelected = null;
 	createdWidget = null;
+	
 }
 
 // _________________________ PROTOTYPE'S BELOW!!
@@ -418,7 +483,7 @@ function createCircle() {
 	this.rad = 50; //Default size 50? needs reconsidering when changing size is implemented
 	this.width = 100;
 	this.height = 100;
-	this.comment = "";
+	this.comment = null;
 }
 
 /**
@@ -456,6 +521,7 @@ function clearCanvas() {
 	console.log("Deleted: " + (widgetArray.length) + " widgets!");
 	// Call clearWidgetArray() to remove everything from the array when clearing canvas.
 	clearWidgetArray();
+	updateCommentSideBar();
 }
 
 /**
@@ -507,6 +573,80 @@ function setAllWidgetsFalse(){
 	}
 }
 
+
+
+// _________________________ CANVAS SIZING AREA - BELOW!!
+
+/**
+ * Sets the canvas size to: small.
+ */
+function sCanvas() {
+	var warnUser = confirm("This will clear the canvas if you proceed!");
+	
+	if (warnUser == true) {
+		// Create the canvas with these attributes.
+		canvas.width = 320;
+		canvas.height = 426;
+	} else {
+		// Do nothing.
+	}
+}
+
+/**
+ * Sets the canvas size to: medium.
+ */
+function mCanvas() {
+	var warnUser = confirm("This will clear the canvas if you proceed!");
+	
+	if (warnUser == true) {
+		// Create the canvas with these attributes.
+		canvas.width = 320;
+		canvas.height = 470;
+	} else {
+		// Do nothing.
+	}
+}
+
+/**
+ * Sets the canvas size to: large.
+ */
+function lCanvas() {
+
+	var warnUser = confirm("This will clear the canvas if you proceed!");
+	if (warnUser == true) {
+		// Create the canvas with these attributes.
+		canvas.width = 480;
+		canvas.height = 640;
+	} else {
+		// Do nothing.
+	}
+}
+
+// _________________________ CANVAS SIZING AREA - ABOVE!!
+
+
+
+// _________________________ DEVELOPER FUNCTIONS - BELOW!!
+
+
+/**
+ * Prints the array into console.
+ */
+function printArray() {
+	if (widgetArray.length == 0) {
+		console.log("There doesn't seem to be anything here....");
+	} else {
+		for (i = 0; i < widgetArray.length; i++) {
+			//Test code to check whats in the widgetArray array.
+			for(i = 0; i < widgetArray.length; i++){
+				// Displays the all the widgets in the array.
+				console.log(widgetArray[i]);
+			}
+		}
+	}
+	console.log("Total widgets in array: " + widgetArray.length);
+}
+
 /**
  * Hides all the widgets in the array.
  */
@@ -522,35 +662,5 @@ function hideWidgetArray() {
 	}
 }
 
+// _________________________ DEVELOPER FUNCTIONS - ABOVE!!
 
-
-// _________________________ CANVAS SIZING AREA - BELOW!!
-
-/**
- * Sets the canvas size to: small.
- */
-function sCanvas() {
-    // Create the canvas with these attributes.
-    canvas.width = 320;
-    canvas.height = 426;
-}
-
-/**
- * Sets the canvas size to: medium.
- */
-function mCanvas() {
-    // Create the canvas with these attributes.
-    canvas.width = 320;
-    canvas.height = 470;
-}
-
-/**
- * Sets the canvas size to: large.
- */
-function lCanvas() {
-    // Create the canvas with these attributes.
-    canvas.width = 480;
-    canvas.height = 640;
-}
-
-// _________________________ CANVAS SIZING AREA - ABOVE!!

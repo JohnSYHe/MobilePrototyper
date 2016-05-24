@@ -71,8 +71,8 @@
 		<button type="button" class="btn btn-default" onClick="setDrawingMode('Text')">Text</button>
 		<button type="button" class="btn btn-default" onClick="setDrawingMode('Line')">Line</button>
 		<button type="button" class="btn btn-default" onClick="drawWidgetArray()">Show</button>
-		<button type="button" class="btn btn-default" onClick="">Draw</button>
-		<button type="button" class="btn btn-default" onClick="setDrawingMode('FreeHand')">7</button>
+		<button type="button" class="btn btn-default" onClick="setDrawingMode('Freedraw')">Draw</button>
+		<button type="button" class="btn btn-default" onClick="deleteWidget()">Delete</button>
 		<button type="button" class="btn btn-default" onClick="drawWidget()">8</button>
 		<button type="button" class="btn btn-default" onClick="printArray()">Array</button>
 		<button type="button" class="btn btn-default" onClick="hideWidgetArray()">Hide</button>
@@ -116,15 +116,27 @@
 </div>
 
 <!--Canvas for drawing on.-->
-<div id="canvasContainer">
+<div id="appContainer">
 	<canvas id="myCanvas" width="425" height="425" style="border: 1px black solid">
 		This text is displayed if your browser does not support HTML5 Canvas.
 	</canvas>
 	<!-- Coordinates for the mouse movement on the canvas for knowledge. -->
-	<p>Mouse over the canvas above to get the coordinates of your mouse pointer.</p>
+	<p>Mouse over the canvas above for coordinates of your mouse pointer.</p>
 	<p id="mCoordinates"></p>
 	<!-- Coordinates for the mouse movement on the canvas for knowledge. -->
+	
+	<div id="comment-sidebar">
+		<div id="comment-sidebar-header">
+			<h3>Comments</h3>
+		</div>
+		
+		<div id="comment-sidebar-comments">
+			<p>Add a comment to an object to populate this sidebar!</p>
+		</div>
+	</div>
 </div>
+
+
 
 </body>
 </html>

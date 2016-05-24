@@ -5,13 +5,6 @@ body {
 	-ms-user-select: none;
 	user-select: none;
 }
-#canvasContainer {
-	/* Locks the position so its in the same position everytime. */
-	position: absolute;
-	/* Move it away from the left by 450px. */
-	left: 400px;
-	top: 100px;
-}
 
 legend:first-child {
 	margin-left: 10px;
@@ -85,6 +78,52 @@ legend {
 #widgetSettings #widgComment {
 	width: 100%;
 	max-width: 100%;
+	height: 75px;
+	resize: none;
+}
+
+#appContainer {
+	/* Locks the position so its in the same position everytime. */
+	position: absolute;
+	/* Move it away from the left by 450px. */
+	left: 400px;
+	top: 100px;
+	width: 500px;
+}
+
+#comment-sidebar {
+	position: absolute;
+	width: 300px;
+	left: 500px;
+	top: 0px;
+}
+
+#comment-sidebar .commentBox:hover {
+	background-color: #E8E8E8 
+}
+
+#comment-sidebar-header {
+	text-align: center;
+}
+
+.commentBox {
+	width: 300px;
+	max-width: 300px;
+	height: 100px;
+	resize: none;
+	background: none;
+	border: 1px solid black;
+	
+	-webkit-user-select: none;
+	-moz-user-select: -moz-none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.boxsizingBorder {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 /* Removes the collapse animation. */
