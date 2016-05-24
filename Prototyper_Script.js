@@ -8,6 +8,9 @@ var yStart = 0;
 // Mouseup Position
 var xEnd = 0;
 var yEnd = 0;
+// Last mouse Position
+var xPrev = 0;
+var yPrev = 0;
 // Offset for objects.
 var objOffset = 50;
 // Global variable for which widget is selected for drawing.
@@ -24,8 +27,10 @@ var insertedNum = 0;
 var createdWidget;
 // For text input.
 var input = "";
-// For movement of widgets and free-draw.
+// For movement of widgets, free-draw and drawing lines.
 var dragging = false;
+var currentlyFreeDrawing = false;
+var currentlyDrawingLine = false;
 
 /**
  * Initialise everything for canvas and context.
@@ -89,17 +94,39 @@ function getMousePosition(canvas, event) {
  * @param event 
  */
 function positionManager(event) {
+
 	var mousePos = getMousePosition(canvas, event);
 	// Formats a message that shows the coordinates.
 	var mouseCoordinates = 'Coordinates: ' + mousePos.x + ', ' + mousePos.y;
 	
 	xPosition = mousePos.x;
 	yPosition = mousePos.y;
-	
+
 	// Sends the message to be displayed.
 	displayCoordinates(mouseCoordinates);
-
+	
 	moveWidget();
+	
+	if(currentlyFreeDrawing == true){
+        context.beginPath();
+        context.moveTo(xPrev, yPrev);
+        context.lineTo(xPosition, yPosition);
+        context.strokeStyle = "black";
+        context.lineWidth = 1;
+        context.stroke();
+        context.closePath();
+	} else if(currentlyDrawingLine == true){
+		moveDrawWidgetArray();
+		context.beginPath();
+        context.moveTo(xStart, yStart);
+        context.lineTo(xPosition, yPosition);
+        context.strokeStyle = "black";
+        context.lineWidth = 1;
+        context.stroke();
+	}
+	
+	xPrev = xPosition;
+	yPrev = yPosition;
 }
 
 /**
@@ -140,6 +167,12 @@ function insertedWidget() {
 	insertedNum++;
 }
 
+function freeDraw() {
+	
+   currentlyFreeDrawing = true;
+   
+}
+
 /**
  * Function for when the mouse button is held down.
  */
@@ -153,8 +186,10 @@ function mouseDown(event) {
 		drawSquare();
 	} else if (widgetSelected == "Circle") {
 		drawCircle();
-	} else if (widgetSelected == "FreeDraw") {
+	} else if (widgetSelected == "Freedraw") {
 		freeDraw();
+	}	else if (widgetSelected == "Line") {
+		currentlyDrawingLine = true;
 	}
 	// Sets dragging to true when mouse is down.
 	dragging = true;
@@ -169,6 +204,10 @@ function mouseUp(event) {
 	yEnd = yPosition;
 	// Sets dragging to false when mouse button is released.
 	dragging = false;
+	currentlyFreeDrawing = false;
+	currentlyDrawingLine = false;
+	
+	//moveDrawWidgetArray();
 
 	if (widgetSelected == "Line") {
 		drawLineWidget();
