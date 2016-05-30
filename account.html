@@ -15,8 +15,7 @@
 
    <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.js"></script>
-   <script src="js/jquery.js"></script>
-   <script src="accountTabQuery.js"></script> 
+   
     <title>Account</title>
 </head>
 
@@ -83,35 +82,37 @@
         
 		</div><!--  end navbar -->
 	</div>	
+	
 	<!--The different tab pane code here. -->	
 	<div class="container">
 		<h2 class="Tab-header"> </h2>
-	<div class="tabs">
+	
     <ul class="nav nav-tabs nav-justified">
-        <li class="active"><a data-toggle="tab" href="#projects">Projects</a></li>
-        <li><a data-toggle="tab" href="#profile">profile</a></li>
-        
+        <li class="active"><a data-toggle="tab" href="#Projects">Projects</a></li>
+        <li><a data-toggle="tab" href="#Profile">Profile</a></li>  
     </ul>
-	</div>
+	
+	
  <!--This will control what is in the tabs -->
     <div class="tab-content">
  <!--The tab that is initially open -->
-        <div id="projects" class="tab-pane fade in active">
-			<form role="form">
+        <div id="Projects" class="tab-pane fade in active">
 			
+		 <section id="project">
             <h3 style="font-family:verdana;text-align:center;" >Here are your current projects.</h3>
 				<input type="button" value="Project 1" style="height: 400px; width: 250px" onClick="parent.location='Prototyper.html'">
                 <input type="button" value="Project 2" style="height: 400px; width: 250px" onClick="parent.location='Prototyper.html'">
                 <input type="button" value="Project 3" style="height: 400px; width: 250px" onClick="parent.location='Prototyper.html'">
 				<input type="button" value="Project 4" style="height: 400px; width: 250px" onClick="parent.location='Prototyper.html'">
-			
-			</form>
-        </div>
+			</section>
+         </div>
+		
 	
-	
-	<!--secound tab pane for user profile -->
-        <div id="Profile" class="profile""tab-pane fade">
-			<form role="form">
+	  
+	     <!--secound tab pane for user profile -->
+        <div id="Profile" class="tab-pane fade">
+		<div class="profile-body">
+		 <form role="form">
 			<div class="form-group">
 			<h4 style="font-family:verdana;text-align:center;" >Hello:</h4>
 				<p style="text-align:center;" >You can change your account information below.</p>
@@ -125,14 +126,15 @@
                     <label style="text-align:center">Email Address</label>
                     <input style="text-align:center;width:500px;" type="email" class="form-control" placeholder="Email">
                 </div>
-				
+			</form>
 			 <!--Makes the button to change details once they are inputed.-->
                 <div class="form-group">
                     <input style="color:white;background-color:red;width:500px;" type="button" class="btn btn-default btn-block" value="Confirm Change" onClick="">
                 </div>
-            </form>
-        </div>
+			 
 			</div>
+			</div>
+		</div>
       </div>
     </div>
 
