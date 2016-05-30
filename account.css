@@ -1,9 +1,11 @@
 
+
 .header {
     text-align: center;
     background-image: url("pic/razer_keyboard.jpg");
     background-size: cover;
-    padding: 4rem; }
+    padding: 4rem; 
+	}
 
 .header-subnav {
     float: none;
@@ -50,7 +52,7 @@
     text-align: left;
 }
 
-.profile {
+.profile-body {
 	
     /* Settings for the box container which holds the form*/
     display: block;
