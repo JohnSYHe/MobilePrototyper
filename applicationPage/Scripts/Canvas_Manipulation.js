@@ -13,6 +13,39 @@ function clearCanvas() {
   updateCommentSideBar();
 }
 
+function downloadCanvas() {
+  // window.open(canvas.toDataURL("image/png"));
+
+  var canvasData = canvas.toDataURL("image/png");
+
+  var aLink = document.createElement('a');
+  var evt = document.createEvent("HTMLEvents");
+  evt.initEvent("click");
+  aLink.download = 'image.png';
+  aLink.href = canvasData;
+  aLink.dispatchEvent(evt);
+
+  // window.location = canvas.toDataURL('image/png');
+  // var img    = canvas.toDataURL("image/png");
+  // document.write('<img src="'+img+'"/>');
+
+  // var dataURL = canvas.toDataURL('image/jpeg');
+  // this.href = dt;
+  // console.log(dataURL);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 // _________________________ CANVAS SIZING AREA - BELOW!!
 
 /**

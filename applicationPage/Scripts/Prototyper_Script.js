@@ -68,6 +68,7 @@ function mainController() {
   document.getElementById("widgWidthInput").addEventListener("input", widgetWidth);
   document.getElementById("widgXPosInput").addEventListener("input", widgetXPos);
   document.getElementById("widgYPosInput").addEventListener("input", widgetYPos);
+
   // Event Listeners for the mouse.
   canvas.addEventListener("mousemove", positionManager);
   canvas.addEventListener("mouseout", hideCoordinates);

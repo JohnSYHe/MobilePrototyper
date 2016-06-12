@@ -18,7 +18,6 @@ legend {
 	width: 350px;
 }
 
-
 #appSideBar {
 	/* Set the width of the side-bar. */
 	width: 375px;
@@ -99,7 +98,7 @@ legend {
 }
 
 #comment-sidebar .commentBox:hover {
-	background-color: #E8E8E8 
+	background-color: #E8E8E8
 }
 
 #comment-sidebar-header {
@@ -113,7 +112,7 @@ legend {
 	resize: none;
 	background: none;
 	border: 1px solid black;
-	
+
 	-webkit-user-select: none;
 	-moz-user-select: -moz-none;
 	-ms-user-select: none;
