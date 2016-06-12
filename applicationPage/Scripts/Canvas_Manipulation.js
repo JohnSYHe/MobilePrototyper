@@ -14,37 +14,16 @@ function clearCanvas() {
 }
 
 function downloadCanvas() {
-  // window.open(canvas.toDataURL("image/png"));
-
+  // Convert canvas into dataURL
   var canvasData = canvas.toDataURL("image/png");
-
+  // Download the canvas through dataURL
   var aLink = document.createElement('a');
   var evt = document.createEvent("HTMLEvents");
   evt.initEvent("click");
   aLink.download = 'image.png';
   aLink.href = canvasData;
   aLink.dispatchEvent(evt);
-
-  // window.location = canvas.toDataURL('image/png');
-  // var img    = canvas.toDataURL("image/png");
-  // document.write('<img src="'+img+'"/>');
-
-  // var dataURL = canvas.toDataURL('image/jpeg');
-  // this.href = dt;
-  // console.log(dataURL);
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 // _________________________ CANVAS SIZING AREA - BELOW!!
 
