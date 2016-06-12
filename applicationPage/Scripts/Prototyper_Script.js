@@ -156,7 +156,6 @@ function setDrawingMode(btnValue) {
   dragging = false;
   setAllWidgetsFalse();
   drawWidgetArray();
-
 }
 
 /**
@@ -168,9 +167,7 @@ function insertedWidget() {
 }
 
 function freeDraw() {
-
   currentlyFreeDrawing = true;
-
 }
 
 /**
@@ -208,7 +205,6 @@ function mouseUp(event) {
   currentlyDrawingLine = false;
 
   //moveDrawWidgetArray();
-
   if (widgetSelected == "Line") {
     drawLineWidget();
   } else if (widgetSelected == "Text") {
@@ -225,7 +221,6 @@ function mouseUp(event) {
 */
 function moveWidget() {
   if (dragging == true && activeWidget != null) {
-
     activeWidget.x = xPosition - objOffset;
     activeWidget.y = yPosition - objOffset;
 
@@ -291,8 +286,6 @@ function deleteWidget() {
   }
   updateCommentSideBar();
 }
-
-
 
 /**
 * Clears the array containing all the widgets and resets it for further use.
