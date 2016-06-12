@@ -1,9 +1,9 @@
-#canvasContainer {
-	/* Locks the position so its in the same position everytime. */
-	position: absolute;
-	/* Move it away from the left by 450px. */
-	left: 400px;
-	top: 100px;
+body {
+	/* Disable the highlighting selection of the page. */
+	-webkit-user-select: none;
+	-moz-user-select: -moz-none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 legend:first-child {
@@ -50,36 +50,80 @@ legend {
 	margin-bottom: 10px;
 }
 
-#widgetSettings #widgID {
+#widgetSettings #widgIDInput {
 	/* Needs changing. */
-	width: 275px;
+	width: 325px;
 }
 
-#widgetSettings #widgHeight {
-	width: 100px;
+#widgetSettings #widgHeightInput {
+	width: 85px;
 }
 
-#widgetSettings #widgWidth {
-	width: 100px;
+#widgetSettings #widgWidthInput {
+	width: 85px;
+}
+
+#widgetSettings #widgXPosInput {
+	width: 75px;
+}
+
+#widgetSettings #widgYPosInput {
+	width: 75px;
 }
 
 #widgetSettings #widgColour {
 	width: 275px;
 }
 
-#widgetSettings #widgFontStyle {
-
+#widgetSettings #widgComment {
+	width: 100%;
+	max-width: 100%;
+	height: 75px;
+	resize: none;
 }
 
-#widgetSettings #widgFontSize {
-	width: 90px;
+#appContainer {
+	/* Locks the position so its in the same position everytime. */
+	position: absolute;
+	/* Move it away from the left by 450px. */
+	left: 400px;
+	top: 100px;
+	width: 500px;
 }
 
-#widgetSettings #widgFontColour {
-	width: 250px;
+#comment-sidebar {
+	position: absolute;
+	width: 300px;
+	left: 500px;
+	top: 0px;
 }
-#widgetSettings #imageUpload {
-	width: 235px;
+
+#comment-sidebar .commentBox:hover {
+	background-color: #E8E8E8 
+}
+
+#comment-sidebar-header {
+	text-align: center;
+}
+
+.commentBox {
+	width: 300px;
+	max-width: 300px;
+	height: 100px;
+	resize: none;
+	background: none;
+	border: 1px solid black;
+	
+	-webkit-user-select: none;
+	-moz-user-select: -moz-none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.boxsizingBorder {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 /* Removes the collapse animation. */
