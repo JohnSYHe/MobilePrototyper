@@ -54,9 +54,21 @@ function updateCommentSideBar() {
 }
 
 /**
+* The radius of the circle widget.
+*/
+function widgetRadius() {
+  if (activeWidget != null) {
+    activeWidget.rad = parseInt(document.getElementById("widgRadiusInput").value);
+    // Redraws it to reflect the changes on the canvas.
+    moveDrawWidgetArray();
+  }
+}
+
+
+/**
 * The height setting of the widget.
 */
-function widgeHeight() {
+function widgetHeight() {
   if (activeWidget != null) {
     activeWidget.height = parseInt(document.getElementById("widgHeightInput").value);
     // Redraws it to reflect the changes on the canvas.
@@ -103,8 +115,21 @@ function widgetYPos() {
 function createWidgetSettings(passedInWidget) {
   document.getElementById("widgetSettings").style.visibility = "visible";
   document.getElementById("widgIDInput").value = passedInWidget.name;
-  document.getElementById("widgHeightInput").value = passedInWidget.height;
-  document.getElementById("widgWidthInput").value = passedInWidget.width;
+  if (passedInWidget.objID == 'Square') {
+    document.getElementById("widgRadiusInput").disabled = true;
+    document.getElementById("widgHeightInput").disabled = false;
+    document.getElementById("widgWidthInput").disabled = false;
+    document.getElementById("widgHeightInput").value = passedInWidget.height;
+    document.getElementById("widgWidthInput").value = passedInWidget.width;
+
+  }
+
+  if (passedInWidget.objID == 'Circle') {
+    document.getElementById("widgHeightInput").disabled = true;
+    document.getElementById("widgWidthInput").disabled = true;
+    document.getElementById("widgRadiusInput").disabled = false;
+    document.getElementById("widgRadiusInput").value = passedInWidget.rad;
+  }
   document.getElementById("widgXPosInput").value = passedInWidget.x;
   document.getElementById("widgYPosInput").value = passedInWidget.y;
   document.getElementById("widgComment").value = passedInWidget.comment;

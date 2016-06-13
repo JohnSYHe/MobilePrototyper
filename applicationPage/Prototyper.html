@@ -58,10 +58,9 @@
       <button type="button" class="btn btn-default" onClick="setDrawingMode('Circle')">Circle</button>
       <button type="button" class="btn btn-default" onClick="setDrawingMode('Text')">Text</button>
       <button type="button" class="btn btn-default" onClick="setDrawingMode('Line')">Line</button>
-      <button type="button" class="btn btn-default" onClick="drawWidgetArray()">Show</button>
       <button type="button" class="btn btn-default" onClick="setDrawingMode('Freedraw')">Draw</button>
       <button type="button" class="btn btn-default" onClick="deleteWidget()">Delete</button>
-      <button type="button" class="btn btn-default" onClick="drawWidget()">8</button>
+      <button type="button" class="btn btn-default" onClick="drawWidgetArray()">Show</button>
       <button type="button" class="btn btn-default" onClick="printArray()">Array</button>
       <button type="button" class="btn btn-default" onClick="hideWidgetArray()">Hide</button>
     </div>
@@ -75,11 +74,14 @@
       <!-- Widget Resizing section. -->
       <div>
         <!-- Height section. -->
-        <label for="widgHeight">Height:</label>
-        <input type="number" class="form-control" id="widgHeightInput" placeholder="100px">
+        <label id="heightInputLabel" for="widgHeight">H:</label>
+        <input type="number" class="form-control" id="widgHeightInput">
         <!-- Width section. -->
-        <label for="widgWidth">Width:</label>
-        <input type="number" class="form-control" id="widgWidthInput" placeholder="100px">
+        <label id="widthInputLabel" for="widgWidth">W:</label>
+        <input type="number" class="form-control" id="widgWidthInput">
+        <!-- Radius section. -->
+        <label id="widgRadiusLabel" for="widgRadius">rad:</label>
+        <input type="number" class="form-control" id="widgRadiusInput">
       </div>
       <div>
         <!-- Widget X-Position -->
@@ -88,11 +90,6 @@
         <!-- Widget Y-Position -->
         <label for="widgYPos">Y-Position:</label>
         <input type="number" class="form-control" id="widgYPosInput">
-      </div>
-      <!-- Widget Colour section. -->
-      <div>
-        <label for="widgColour">Colour:</label>
-        <input type="text" class="form-control" id="widgColour" placeholder="#012345678">
       </div>
       <!-- Widget Comment section. -->
       <div>

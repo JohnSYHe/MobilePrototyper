@@ -64,10 +64,11 @@ function init() {
 function mainController() {
   document.getElementById("widgIDInput").addEventListener("input", widgetName);
   document.getElementById("widgComment").addEventListener("input", widgetComment);
-  document.getElementById("widgHeightInput").addEventListener("input", widgeHeight);
+  document.getElementById("widgHeightInput").addEventListener("input", widgetHeight);
   document.getElementById("widgWidthInput").addEventListener("input", widgetWidth);
   document.getElementById("widgXPosInput").addEventListener("input", widgetXPos);
   document.getElementById("widgYPosInput").addEventListener("input", widgetYPos);
+  document.getElementById("widgRadiusInput").addEventListener("input", widgetRadius);
 
   // Event Listeners for the mouse.
   canvas.addEventListener("mousemove", positionManager);
@@ -240,7 +241,7 @@ function clickedWidget() {
     if (xPosition > widgetArray[i].x && xPosition < (widgetArray[i].x + widgetArray[i].width)) {
       if (yPosition > widgetArray[i].y && yPosition < (widgetArray[i].y + widgetArray[i].height)) {
 
-        console.log("Clicked: " + widgetArray[i].name);
+        console.log("Clicked: " + widgetArray[i].name + ", Object ID: " + widgetArray[i].objID);
         createWidgetSettings(widgetArray[i]);
         for (j = 0; j < widgetArray.length; j++){
           widgetArray[j].selected = false;
@@ -269,6 +270,7 @@ function clickedWidget() {
     activeWidget = null;
     // Hides the widget settings when a widget is deselected.
     document.getElementById("widgetSettings").style.visibility = 'hidden';
+    // heightInputLabel
   }
 }
 

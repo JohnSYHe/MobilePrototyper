@@ -28,7 +28,7 @@ function drawCircle() {
       context.strokeStyle = "red";
       context.lineWidth = 2;
       context.beginPath();
-      context.rect(this.x - 3, this.y - 3, this.width + 6, this.height + 6);
+      context.arc(this.x + objOffset, this.y + objOffset, this.rad+3, 0, 2 * Math.PI);
       context.stroke();
     }
     context.strokeStyle = 'black';
@@ -96,6 +96,7 @@ function drawWidget() {
 * Creates a 'Circle' prototype for the 'Square' object.
 */
 function createSquare() {
+  this.objID = 'Square';
   this.name = name;
   this.selected = false;
   this.x = xPosition - objOffset;
@@ -109,6 +110,7 @@ function createSquare() {
 * Creates a 'Circle' prototype for the 'Circle' object.
 */
 function createCircle() {
+  this.objID = 'Circle';
   this.name = name;
   this.selected = false;
   this.x = xPosition - objOffset;
