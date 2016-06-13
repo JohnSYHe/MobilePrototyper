@@ -1,0 +1,132 @@
+body {
+	/* Disable the highlighting selection of the page. */
+	-webkit-user-select: none;
+	-moz-user-select: -moz-none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+legend:first-child {
+	margin-left: 10px;
+	margin-bottom: 10px;
+	width: 350px;
+}
+
+legend {
+	margin-left: 10px;
+	margin-top: 20px;
+	width: 350px;
+}
+
+#appSideBar {
+	/* Set the width of the side-bar. */
+	width: 375px;
+	/* Float it left. */
+	float: left;
+
+}
+
+#buttonContainer {
+	height: 150px;
+}
+
+#buttonContainer button {
+	/* Button width. */
+	width: 64px;
+	/* Button height. */
+	height: 64px;
+	/* Spaces out the buttons to the left by 5px apart. */
+	margin: 5px;
+	/* Make the buttons float left. */
+	float: left;
+	/* Sharp corners for that cutting edge look. */
+	border-radius: 0px;
+}
+
+#widgetSettings div{
+	margin-left: 5px;
+	margin-right: 20px;
+	margin-bottom: 10px;
+}
+
+#widgetSettings #widgIDInput {
+	/* Needs changing. */
+	width: 325px;
+}
+
+#widgetSettings #widgHeightInput {
+	width: 85px;
+}
+
+#widgetSettings #widgWidthInput {
+	width: 85px;
+}
+
+#widgetSettings #widgXPosInput {
+	width: 75px;
+}
+
+#widgetSettings #widgYPosInput {
+	width: 75px;
+}
+
+#widgetSettings #widgColour {
+	width: 275px;
+}
+
+#widgetSettings #widgComment {
+	width: 100%;
+	max-width: 100%;
+	height: 75px;
+	resize: none;
+}
+
+#appContainer {
+	/* Locks the position so its in the same position everytime. */
+	position: absolute;
+	/* Move it away from the left by 450px. */
+	left: 400px;
+	top: 100px;
+	width: 500px;
+}
+
+#comment-sidebar {
+	position: absolute;
+	width: 300px;
+	left: 500px;
+	top: 0px;
+}
+
+#comment-sidebar .commentBox:hover {
+	background-color: #E8E8E8
+}
+
+#comment-sidebar-header {
+	text-align: center;
+}
+
+.commentBox {
+	width: 300px;
+	max-width: 300px;
+	height: 100px;
+	resize: none;
+	background: none;
+	border: 1px solid black;
+
+	-webkit-user-select: none;
+	-moz-user-select: -moz-none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.boxsizingBorder {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+/* Removes the collapse animation. */
+.collapsing {
+    -webkit-transition: none;
+    transition: none;
+}
